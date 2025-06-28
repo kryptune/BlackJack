@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack Game</title>
+</head>
+<body>
+    <div class="balance">Balance: $880</div>
+
+    <h1>Blackjack</h1>
+
+    <div class="bet-section">
+      <label for="bet">Enter Your Bet:</label>
+      <input type="number" id="bet" min="1" />
+      <button onclick="placeBet()">Place Bet</button>
+    </div>
+
+    <div class="dealer-cards">
+      <h2>Dealer's Cards:</h2>
+      <div class="cards">
+        <div class="card" style="background-image: url('images/cards/back.png');"></div>
+        <div class="card" style="background-image: url('images/cards/9S.png');"></div>
+      </div>
+    </div>
+
+    <div class="player-cards">
+      <h2>Your Cards:</h2>
+      <div class="cards">
+        <div class="card" style="background-image: url('images/cards/3C.png');"></div>
+        <div class="card" style="background-image: url('images/cards/6H.png');"></div>
+      </div>
+      <div class="sum">Sum: 9</div>
+    </div>
+
+    <div class="actions">
+      <button>HIT</button>
+      <button>STAND</button>
+      <button>DOUBLE DOWN</button>
+      <button>SURRENDER</button>
+    </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
