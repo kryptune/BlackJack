@@ -20,30 +20,31 @@
       margin-bottom: 10px;
     }
 
-    .bet-section {
+    #bet-section {
       margin-bottom: 20px;
     }
 
-    .bet-section input {
+    #bet-section input {
       padding: 8px;
       font-size: 1rem;
       width: 100px;
     }
 
-    .bet-section button {
+    #bet-section button {
       padding: 8px 15px;
       font-size: 1rem;
       margin-left: 10px;
       cursor: pointer;
     }
 
-    .cards {
+    
+    #cards {
       display: flex;
       justify-content: center;
       margin: 10px 0;
     }
 
-    .card {
+    #card {
       width: 80px;
       height: 120px;
       margin: 0 5px;
@@ -53,7 +54,7 @@
       background-position: center;
     }
 
-    .actions button {
+    #actions button {
       background-color: yellow;
       border: none;
       padding: 10px 20px;
@@ -63,7 +64,7 @@
       border-radius: 5px;
     }
 
-    .sum {
+    #sum {
       font-size: 1.2rem;
       margin-top: 10px;
     }
