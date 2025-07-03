@@ -29,6 +29,8 @@ let total_money = 1000;
 let win = 0;
 let lose = 0;
 
+document.getElementById("myModal").style.display = "none";
+
 function placeBet() {
   if (bet <= 0 || isNaN(bet)) {
     alert("Please enter a valid bet.");
