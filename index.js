@@ -1,5 +1,3 @@
-const inputEl = document.getElementById("bet-el").value;
-const betEl = parseInt(inputEl, 10);
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -30,9 +28,10 @@ let dsum = 0;
 let total_money = 1000;
 let win = 0;
 let lose = 0;
-let bet = betEl || 0; // Initialize bet with the value from input or 0 if not set
-console.log("betEl:", betEl);
+let bet = 0;
+
 function placeBet() {
+  bet = parseInt(document.getElementById("bet-el").value); // Get the bet value from the input field
   if (bet <= 0 || isNaN(bet)) {
     alert("Please enter a valid bet.");
   } else if (bet > total_money) {
