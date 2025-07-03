@@ -169,7 +169,7 @@ function stand() {
   moneyEl.innerText = "Balance: $" + total_money;
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
-
+  dealer_Card2.classList.toggle('flip');
   if (sum > 21) {
     msgEl.style.color = "red";
     msgEl.innerText = "You Lose!";
