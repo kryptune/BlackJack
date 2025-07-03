@@ -168,23 +168,23 @@ function No() {
   }
 }
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === 'H') {
+  if (event.key === "H") {
     hit(); // Call your custom function here
   }
 });
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === 'S') {
+  if (event.key === "S") {
     stand(); // Call your custom function here
   }
 });
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === 'D') {
+  if (event.key === "D") {
     double_down(); // Call your custom function here
   }
 });
