@@ -1,6 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   background-image: url("pokertable.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   color: white;
   text-align: center;
   padding: 20px;
