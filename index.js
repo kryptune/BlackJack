@@ -22,7 +22,8 @@ let player_number = {
   12: 10,
   13: 10,
 };
-
+let dealer_Cards = [];
+let player_Cards = [];
 let sum = 0;
 let dsum = 0;
 let total_money = 1000;
@@ -65,8 +66,7 @@ function cards() {
 }
 // Initialize dealer and player cards
 // dealer_Cards will have 2 cards, player_Cards will have 3 cards
-let dealer_Cards = [cards(), cards()];
-let player_Cards = [cards(), cards(), cards()];
+
 
 function reset() {
   // Reset the game
