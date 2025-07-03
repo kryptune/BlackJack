@@ -35,7 +35,7 @@ function placeBet() {
   } else if (bet > total_money) {
     alert("You cannot bet more than your total money.");
   } else {
-    moneyEl.innerText = "$" + total_money;
+    moneyEl.innerText = "Balance: Balance: $" + total_money;
     startGame();
   }
 }
@@ -48,10 +48,23 @@ function cards() {
   const number = Math.floor(Math.random() * 13) + 1;
   return letter + number;
 }
-  let dealer_Cards = [cards(), cards()];
-  let player_Cards = [cards(), cards(), cards()];
+// Initialize dealer and player cards
+// dealer_Cards will have 2 cards, player_Cards will have 3 cards
+let dealer_Cards = [cards(), cards()];
+let player_Cards = [cards(), cards(), cards()];
+
+function reset() {
+  // Reset the game
+  player_Card1.style.backgroundImage = "url('cards/back.png')";
+  player_Card2.style.backgroundImage = "url('cards/back.png')";
+  player_Card3.style.backgroundImage = "url('cards/back.png')";
+  dealer_Card1.style.backgroundImage = "url('cards/back.png')";
+  dealer_Card2.style.backgroundImage = "url('cards/back.png')";
+  player_Card3.style.display = "none"; // Hide the third card initially
+}
 
 function startGame() {
+  reset(); // Reset the game state
   dealer_Cards = [cards(), cards()];
   player_Cards = [cards(), cards(), cards()];
   let card_value1 = parseInt(player_Cards[0].slice(1));
@@ -73,7 +86,7 @@ function stand() {
   dealer_diff = 21 - dsum;
   player_diff = 21 - sum;
   total_money -= bet;
-  moneyEl.innerText = "$" + total_money;
+  moneyEl.innerText = "Balance: $" + total_money;
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
 
@@ -85,7 +98,7 @@ function stand() {
       msgEl.innerText = "You Win! Do you want to play again?";
       win += 1;
       total_money += bet * 2;
-      moneyEl.innerText = "$" + total_money;
+      moneyEl.innerText = "Balance: $" + total_money;
     } else if (dealer_diff === player_diff) {
       msgEl.innerText = "It's a Draw! Do you want to play again?";
       total_money += bet; // return the bet
@@ -128,21 +141,24 @@ function surrender() {
   msgEl.innerText = "You lose half of your bet. ";
   lose += 1;
   total_money -= bet / 2; // lose half of the bet
-  moneyEl.innerText = "$" + total_money;
+  moneyEl.innerText = "Balance: $" + total_money;
   document.getElementById("myModal").style.display = "flex";
 }
 
 function Yes() {
-    document.getElementById("myModal").style.display = "none";
-    startGame;
+  document.getElementById("myModal").style.display = "none";
+  startGame;
 }
 
 function No() {
-    document.getElementById("myModal").style.display = "none";
-    if (total_money <= 0) {
-        alert("You have no money left to play. Please refresh the page to start over.");
-    } else {
-        moneyEl.innerText = "$" + total_money;
-        alert("Thank you for playing! Your total money is: $" + total_money);
-    }
+  document.getElementById("myModal").style.display = "none";
+  reset();
+  if (total_money <= 0) {
+    alert(
+      "You have no money left to play. Please refresh the page to start over."
+    );
+  } else {
+    moneyEl.innerText = "Balance: $" + total_money;
+    alert("Thank you for playing! Your total money is: $" + total_money);
+  }
 }

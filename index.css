@@ -126,9 +126,6 @@ h5 {
 }
 
 #win-lose-el {
-  position: absolute;
-  top: 500px;
-  left: 280px;
   font-size: 18px;
   font-weight: bold;
   color: white;
