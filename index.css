@@ -118,7 +118,7 @@ h1 {
   height: 75px;
 }
 
-h5, p {
+p {
   color: yellow;
   margin-top: 0;
   margin-bottom: 20px;
@@ -127,14 +127,13 @@ h5, p {
      1px -1px 0 black,
     -1px  1px 0 black,
      1px  1px 0 black;
+  font-size: 15px;
 }
 
 h5 {
   font-size: 21px;
-}
-
-p {
-  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 #win-lose-el {
