@@ -22,6 +22,9 @@ let player_number = {
   12: 10,
   13: 10,
 };
+const letters = ["A", "B", "C", "D"];
+const ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+const fullDeck = [];
 let dealer_Cards = [];
 let player_Cards = [];
 let sum = 0;
@@ -31,7 +34,21 @@ let win = 0;
 let lose = 0;
 let bet = 0;
 
+function generateDeck() {
+  for (let letter of letters) {
+    for (let rank of ranks) {
+      fullDeck.push(letter + rank);
+    }
+  }
+  // Shuffle the deck
+  for (let i = fullDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]]; // Swap elements
+  }
+}
+
 function placeBet() {
+  generateDeck(); // Ensure the deck is generated before placing a bet
   bet = parseInt(document.getElementById("bet-el").value); // Get the bet value from the input field
   if (bet <= 0 || isNaN(bet)) {
     alert("Please enter a valid bet.");
@@ -45,26 +62,18 @@ function placeBet() {
 }
 
 function cards() {
-  const letters = ["A", "B", "C", "D"];
-  const ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
-  const fullDeck = [];
-  for (let letter of letters) {
-    for (let rank of ranks) {
-      fullDeck.push(letter + rank);
-    }
-  }
-  // Shuffle the deck
-  for (let i = fullDeck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]]; // Swap elements
+  if (fullDeck.length <= 4) {
+    // If the deck is running low, regenerate it
+    generateDeck();
   }
   const index = Math.floor(Math.random() * fullDeck.length);
   const card = fullDeck.splice(index, 1)[0]; // removes the card
+  console.log("Card drawn: " + card);
+  console.log("Remaining cards in deck: " + fullDeck.length);
   return card;
 }
 // Initialize dealer and player cards
 // dealer_Cards will have 2 cards, player_Cards will have 3 cards
-
 
 function reset() {
   // Reset the game
