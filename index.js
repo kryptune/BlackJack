@@ -53,13 +53,11 @@ function cards() {
       fullDeck.push(letter + rank);
     }
   }
-  console.log("Full Deck: ", fullDeck);
   // Shuffle the deck
   for (let i = fullDeck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]]; // Swap elements
   }
-  console.log("Shuffled Deck: ", fullDeck);
   const index = Math.floor(Math.random() * fullDeck.length);
   const card = fullDeck.splice(index, 1)[0]; // removes the card
   return card;
