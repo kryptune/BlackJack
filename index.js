@@ -35,6 +35,8 @@ let lose = 0;
 let bet = 0;
 
 function generateDeck() {
+  fullDeck.length = 0; // Clear the existing deck
+  // Generate a full deck of cards
   for (let letter of letters) {
     for (let rank of ranks) {
       fullDeck.push(letter + rank);
