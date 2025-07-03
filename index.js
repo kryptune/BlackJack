@@ -1,4 +1,4 @@
-const bet = document.getElementById("bet").value;
+let bet = document.getElementById("bet").value;
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -28,8 +28,6 @@ let dsum = 0;
 let total_money = 1000;
 let win = 0;
 let lose = 0;
-
-document.getElementById("myModal").style.display = "none";
 
 function placeBet() {
   if (bet <= 0 || isNaN(bet)) {
