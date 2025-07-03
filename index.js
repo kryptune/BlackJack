@@ -140,7 +140,7 @@ function startGame() {
     winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
-    }, 10);
+    }, 1000);
     return; // End the game if player has Blackjack
   }
 
@@ -155,7 +155,7 @@ function startGame() {
     winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
-    }, 10);
+    }, 1000);
     return; // End the game if dealer has Blackjack
   }
 
@@ -195,7 +195,7 @@ function stand() {
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
     document.getElementById("myModal").style.display = "flex";
-  }, 10);
+  }, 1000);
   winloseEl.innerText = "W: " + win + "  L: " + lose;
 
   console.log("BET:" + bet + " total_money:" + total_money);
@@ -232,7 +232,7 @@ function surrender() {
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
     document.getElementById("myModal").style.display = "flex";
-  }, 10);
+  }, 1000);
 }
 
 function Yes() {
