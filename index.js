@@ -23,7 +23,21 @@ let player_number = {
   13: 10,
 };
 const letters = ["A", "B", "C", "D"];
-const ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+const ranks = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+];
 const fullDeck = [];
 let dealer_Cards = [];
 let player_Cards = [];
@@ -64,10 +78,6 @@ function placeBet() {
 }
 
 function cards() {
-  if (fullDeck.length <= 4) {
-    // If the deck is running low, regenerate it
-    generateDeck();
-  }
   const index = Math.floor(Math.random() * fullDeck.length);
   const card = fullDeck.splice(index, 1)[0]; // removes the card
   console.log("Card drawn: " + card);
@@ -86,6 +96,10 @@ function reset() {
   dealer_Card1.style.backgroundImage = "url('cards/back.png')";
   dealer_Card2.style.backgroundImage = "url('cards/back.png')";
   player_Card3.style.display = "none"; // Hide the third card initially
+  if (fullDeck.length <= 4) {
+    // If the deck is running low, regenerate it
+    generateDeck();
+  }
 }
 
 function startGame() {
@@ -108,7 +122,7 @@ function startGame() {
     dsum = 12; // If both are Aces, treat one as 1 instead of 11
   }
 
-    // Display the cards
+  // Display the cards
   dealer_Card1.style.backgroundImage =
     "url('cards/" + dealer_Cards[0] + ".png')";
   player_Card1.style.backgroundImage =
@@ -144,7 +158,6 @@ function startGame() {
     }, 10);
     return; // End the game if dealer has Blackjack
   }
-
 
   console.log(card_value1, card_value2, dcard_value1, dcard_value2);
 }
