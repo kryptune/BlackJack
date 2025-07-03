@@ -158,6 +158,7 @@ function stand() {
       total_money += bet * 2.5; // Player wins 2.5 times the bet
       moneyEl.innerText = "Balance: $" + total_money;
     } else if (dealer_diff === player_diff) {
+      msgEl.style.color = "gray";
       msgEl.innerText = "It's a Draw!";
       total_money += bet; // return the bet
     } else {

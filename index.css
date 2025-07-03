@@ -121,6 +121,7 @@ h1 {
 h5 {
   font-size: 21px;
   margin-top: 0;
+  border: 2px solid black;
   margin-bottom: 20px;
   color: orangered;
 }
@@ -128,6 +129,7 @@ h5 {
 p {
   font-size: 15px;
   margin-top: 0;
+  border: 2px solid black;
   margin-bottom: 20px;
   color: rgb(255, 166, 0);
 }
