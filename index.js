@@ -31,7 +31,7 @@ let total_money = 1000;
 let win = 0;
 let lose = 0;
 let bet = betEl || 0; // Initialize bet with the value from input or 0 if not set
-
+console.log("betEl:", betEl);
 function placeBet() {
   if (bet <= 0 || isNaN(bet)) {
     alert("Please enter a valid bet.");
