@@ -1,4 +1,4 @@
-let bet = parseInt(document.getElementById("bet-input").value);
+let bet = parseInt(document.getElementById("bet-el").value);
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
