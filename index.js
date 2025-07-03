@@ -1,4 +1,3 @@
-document.getElementById("myModal").style.display = "none";
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -114,7 +113,10 @@ function stand() {
     }
   }
   // Show the modal
-  document.getElementById("myModal").style.display = "flex";
+  setTimeout(() => {
+    // next part of logic — heavy calculations, modal open, etc.
+    document.getElementById("myModal").style.display = "flex";
+  }, 10);
   winloseEl.innerText = "W: " + win + "  L: " + lose;
 
   console.log("BET:" + bet + " total_money:" + total_money);
@@ -148,7 +150,10 @@ function surrender() {
   lose += 1;
   total_money -= bet / 2; // lose half of the bet
   moneyEl.innerText = "Balance: $" + total_money;
-  document.getElementById("myModal").style.display = "flex";
+  setTimeout(() => {
+    // next part of logic — heavy calculations, modal open, etc.
+    document.getElementById("myModal").style.display = "flex";
+  }, 10);
 }
 
 function Yes() {
