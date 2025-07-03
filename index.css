@@ -73,7 +73,7 @@ h1 {
 }
 
 .modal {
-  display: none !important; /* Hidden by default */
+  display: none; /* Hidden by default */
   position: fixed;
   z-index: 1000;
   top: 0;
