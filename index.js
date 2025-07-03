@@ -70,6 +70,7 @@ function cards() {
 
 function reset() {
   // Reset the game
+  bet = parseInt(document.getElementById("bet-el").value); // Get the bet value from the input field
   player_Card1.style.backgroundImage = "url('cards/back.png')";
   player_Card2.style.backgroundImage = "url('cards/back.png')";
   player_Card3.style.backgroundImage = "url('cards/back.png')";
