@@ -8,7 +8,7 @@ let player_Card1 = document.getElementById("player-card-1");
 let player_Card2 = document.getElementById("player-card-2");
 let player_Card3 = document.getElementById("player-card-3");
 let player_number = {
-  1: 1,
+  1: 11,
   2: 2,
   3: 3,
   4: 4,
@@ -45,11 +45,23 @@ function placeBet() {
 
 function cards() {
   const letters = ["A", "B", "C", "D"];
-  const randomIndex = Math.floor(Math.random() * letters.length);
-  const letter = letters[randomIndex];
-  // Random number from 1 to 13
-  const number = Math.floor(Math.random() * 13) + 1;
-  return letter + number;
+  const ranks = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+  const fullDeck = [];
+  for (let letter of letters) {
+    for (let rank of ranks) {
+      fullDeck.push(letter + rank);
+    }
+  }
+
+  // Shuffle the deck
+  for (let i = fullDeck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]]; // Swap elements
+  }
+
+  const index = Math.floor(Math.random() * fullDeck.length);
+  const card = deck.splice(index, 1)[0]; // removes the card
+  return card;
 }
 // Initialize dealer and player cards
 // dealer_Cards will have 2 cards, player_Cards will have 3 cards
@@ -74,14 +86,60 @@ function startGame() {
   let card_value2 = parseInt(player_Cards[1].slice(1));
   let dcard_value1 = parseInt(dealer_Cards[0].slice(1));
   let dcard_value2 = parseInt(dealer_Cards[1].slice(1));
+  sum = player_number[card_value1] + player_number[card_value2];
   dsum = player_number[dcard_value1] + player_number[dcard_value2];
+
+  // Check for Ace in player's first two cards
+  if (card_value1 === 11 && card_value2 === 11) {
+    sum = 12; // If both are Aces, treat one as 1 instead of 11
+  }
+  // Check for Ace in dealer's first two cards
+  if (dcard_value1 === 11 && dcard_value2 === 11) {
+    dsum = 12; // If both are Aces, treat one as 1 instead of 11
+  }
+
+  if (sum === 21) {
+    msgEl.style.color = "green";
+    msgEl.innerText = "Blackjack! You win!";
+    total_money += bet * 2.5; // Player wins 2.5 times the bet
+    moneyEl.innerText = "Balance: $" + total_money;
+    win += 1;
+    winloseEl.innerText = "W: " + win + "  L: " + lose;
+    setTimeout(() => {
+      document.getElementById("myModal").style.display = "flex";
+    }, 10);
+    return; // End the game if player has Blackjack
+  }
+
+  if (dsum === 21) {
+    msgEl.style.color = "red";
+    msgEl.innerText = "Dealer has Blackjack! You lose!";
+    total_money -= bet; // Player loses the bet
+    moneyEl.innerText = "Balance: $" + total_money;
+    lose += 1;
+    winloseEl.innerText = "W: " + win + "  L: " + lose;
+    setTimeout(() => {
+      document.getElementById("myModal").style.display = "flex";
+    }, 10);
+    return; // End the game if dealer has Blackjack
+  }
+
+  while (
+    player_Cards[1] === player_Cards[0] ||
+    player_Cards[1] === player_Cards[2] ||
+    player_Cards[0] === player_Cards[2]
+  ) {
+    player_Cards[1] = cards(); // If the second card is the same as the first, draw a new card
+    player_Cards[2] = cards(); // If the third card is the same as the first or second, draw a new card
+    card_value2 = parseInt(player_Cards[1].slice(1));
+  }
+  // Display the cards
   dealer_Card1.style.backgroundImage =
     "url('cards/" + dealer_Cards[0] + ".png')";
   player_Card1.style.backgroundImage =
     "url('cards/" + player_Cards[0] + ".png')";
   player_Card2.style.backgroundImage =
     "url('cards/" + player_Cards[1] + ".png')";
-  sum = player_number[card_value1] + player_number[card_value2];
   sumEl.innerText = "Sum: " + sum;
 
   console.log(card_value1, card_value2, dcard_value1, dcard_value2);
@@ -104,7 +162,7 @@ function stand() {
       msgEl.style.color = "green";
       msgEl.innerText = "You Win!";
       win += 1;
-      total_money += bet * 2;
+      total_money += bet * 2.5; // Player wins 2.5 times the bet
       moneyEl.innerText = "Balance: $" + total_money;
     } else if (dealer_diff === player_diff) {
       msgEl.innerText = "It's a Draw!";
@@ -161,6 +219,11 @@ function surrender() {
 
 function Yes() {
   document.getElementById("myModal").style.display = "none";
+  if (total_money <= 0) {
+    alert(
+      "You have no money left to play. Please refresh the page to start over."
+    );
+  }
   startGame();
 }
 
