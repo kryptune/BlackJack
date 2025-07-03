@@ -60,7 +60,7 @@ function cards() {
   }
 
   const index = Math.floor(Math.random() * fullDeck.length);
-  const card = deck.splice(index, 1)[0]; // removes the card
+  const card = fullDeck.splice(index, 1)[0]; // removes the card
   return card;
 }
 // Initialize dealer and player cards
