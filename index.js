@@ -1,4 +1,4 @@
-let bet = document.getElementById("bet").value;
+let bet = parseInt(document.getElementById("bet-input").value);
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -162,3 +162,24 @@ function No() {
     alert("Thank you for playing! Your total money is: $" + total_money);
   }
 }
+
+document.addEventListener('keydown', function(event) {
+  // Check if Shift + M is pressed
+  if (event.key === 'H') {
+    hit(); // Call your custom function here
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  // Check if Shift + M is pressed
+  if (event.key === 'S') {
+    stand(); // Call your custom function here
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  // Check if Shift + M is pressed
+  if (event.key === 'D') {
+    double_down(); // Call your custom function here
+  }
+});
