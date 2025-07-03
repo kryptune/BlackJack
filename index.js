@@ -52,13 +52,13 @@ function cards() {
       fullDeck.push(letter + rank);
     }
   }
-
+  console.log("Full Deck: ", fullDeck);
   // Shuffle the deck
   for (let i = fullDeck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]]; // Swap elements
   }
-
+  console.log("Shuffled Deck: ", fullDeck);
   const index = Math.floor(Math.random() * fullDeck.length);
   const card = fullDeck.splice(index, 1)[0]; // removes the card
   return card;
@@ -124,15 +124,6 @@ function startGame() {
     return; // End the game if dealer has Blackjack
   }
 
-  while (
-    player_Cards[1] === player_Cards[0] ||
-    player_Cards[1] === player_Cards[2] ||
-    player_Cards[0] === player_Cards[2]
-  ) {
-    player_Cards[1] = cards(); // If the second card is the same as the first, draw a new card
-    player_Cards[2] = cards(); // If the third card is the same as the first or second, draw a new card
-    card_value2 = parseInt(player_Cards[1].slice(1));
-  }
   // Display the cards
   dealer_Card1.style.backgroundImage =
     "url('cards/" + dealer_Cards[0] + ".png')";
