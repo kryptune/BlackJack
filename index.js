@@ -107,7 +107,7 @@ function startGame() {
   sumEl.innerText = "Sum: " + sum;
 
   if (sum === 21) {
-    msgEl.style.color = "green";
+    msgEl.style.color = "yellowgreen";
     msgEl.innerText = "Blackjack! You win!";
     total_money += bet * 2.5; // Player wins 2.5 times the bet
     moneyEl.innerText = "Balance: $" + total_money;
@@ -152,7 +152,7 @@ function stand() {
     lose += 1;
   } else {
     if (dealer_diff > player_diff) {
-      msgEl.style.color = "green";
+      msgEl.style.color = "yellowgreen";
       msgEl.innerText = "You Win!";
       win += 1;
       total_money += bet * 2.5; // Player wins 2.5 times the bet
