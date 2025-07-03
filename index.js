@@ -1,4 +1,4 @@
-let bet = parseInt(document.getElementById("bet-el").value);
+let betEl = document.getElementById("bet-el").value;
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -23,6 +23,7 @@ let player_number = {
   12: 10,
   13: 10,
 };
+let bet = parseInt(betEl);
 let sum = 0;
 let dsum = 0;
 let total_money = 1000;
@@ -38,6 +39,7 @@ function placeBet() {
     moneyEl.innerText = "Balance: Balance: $" + total_money;
     startGame();
   }
+  console.log("Bet placed: $" + bet);
 }
 
 function cards() {
@@ -80,6 +82,8 @@ function startGame() {
     "url('cards/" + player_Cards[1] + ".png')";
   sum = player_number[card_value1] + player_number[card_value2];
   sumEl.innerText = "Sum: " + sum;
+
+  console.log(card_value1, card_value2, dcard_value1, dcard_value2);
 }
 
 function stand() {
