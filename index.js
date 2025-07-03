@@ -1,3 +1,4 @@
+document.getElementById("myModal").style.display = "none";
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -37,7 +38,7 @@ function placeBet() {
   } else if (bet > total_money) {
     alert("You cannot bet more than your total money.");
   } else {
-    moneyEl.innerText = "Balance: Balance: $" + total_money;
+    moneyEl.innerText = "Balance: $" + total_money;
     startGame();
   }
   console.log("Bet placed: $" + bet);
