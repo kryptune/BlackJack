@@ -232,7 +232,7 @@ function surrender() {
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
     document.getElementById("myModal").style.display = "flex";
-  }, 3000);
+  }, 100);
 }
 
 function Yes() {
@@ -260,21 +260,21 @@ function No() {
 
 document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === "H") {
+  if (event.key === "h") {
     hit(); // Call your custom function here
   }
 });
 
 document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === "S") {
+  if (event.key === "s") {
     stand(); // Call your custom function here
   }
 });
 
 document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
-  if (event.key === "D") {
+  if (event.key === "d") {
     double_down(); // Call your custom function here
   }
 });
