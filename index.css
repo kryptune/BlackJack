@@ -1,6 +1,6 @@
   body {
       font-family: Arial, sans-serif;
-      background-color: #006400;
+      background-image: url("pokertable.jpeg");
       color: white;
       text-align: center;
       padding: 20px;
@@ -54,6 +54,10 @@
       background-position: center;
     }
 
+    #player-card-3 {
+      display: none; /* Hidden by default */
+    }
+
     .actions button {
       background-color: yellow;
       border: none;
@@ -68,3 +72,14 @@
       font-size: 1.2rem;
       margin-top: 10px;
     }
+
+    #win-lose-el {
+    position: absolute;
+    top: 500px;
+    left: 280px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
