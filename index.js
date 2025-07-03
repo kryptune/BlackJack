@@ -158,7 +158,7 @@ function surrender() {
 
 function Yes() {
   document.getElementById("myModal").style.display = "none";
-  startGame;
+  startGame();
 }
 
 function No() {
