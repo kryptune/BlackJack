@@ -122,7 +122,14 @@ h5 {
   font-size: 21px;
   margin-top: 0;
   margin-bottom: 20px;
-  color: rgb(180, 4, 4);
+  color: orangered;
+}
+
+p {
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: orangered;
 }
 
 #win-lose-el {

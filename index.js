@@ -96,19 +96,22 @@ function stand() {
     "url('cards/" + dealer_Cards[1] + ".png')";
 
   if (sum > 21) {
-    msgEl.innerText = "You Lose! Do you want to play again?";
+    msgEl.style.color = "red";
+    msgEl.innerText = "You Lose!";
     lose += 1;
   } else {
     if (dealer_diff > player_diff) {
-      msgEl.innerText = "You Win! Do you want to play again?";
+      msgEl.style.color = "green";
+      msgEl.innerText = "You Win!";
       win += 1;
       total_money += bet * 2;
       moneyEl.innerText = "Balance: $" + total_money;
     } else if (dealer_diff === player_diff) {
-      msgEl.innerText = "It's a Draw! Do you want to play again?";
+      msgEl.innerText = "It's a Draw!";
       total_money += bet; // return the bet
     } else {
-      msgEl.innerText = "You Lose! Do you want to play again?";
+      msgEl.style.color = "red";
+      msgEl.innerText = "You Lose!";
       lose += 1;
     }
   }
