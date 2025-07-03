@@ -99,6 +99,15 @@ function startGame() {
     dsum = 12; // If both are Aces, treat one as 1 instead of 11
   }
 
+    // Display the cards
+  dealer_Card1.style.backgroundImage =
+    "url('cards/" + dealer_Cards[0] + ".png')";
+  player_Card1.style.backgroundImage =
+    "url('cards/" + player_Cards[0] + ".png')";
+  player_Card2.style.backgroundImage =
+    "url('cards/" + player_Cards[1] + ".png')";
+  sumEl.innerText = "Sum: " + sum;
+
   if (sum === 21) {
     msgEl.style.color = "green";
     msgEl.innerText = "Blackjack! You win!";
@@ -113,6 +122,8 @@ function startGame() {
   }
 
   if (dsum === 21) {
+    dealer_Card2.style.backgroundImage =
+      "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "red";
     msgEl.innerText = "Dealer has Blackjack! You lose!";
     total_money -= bet; // Player loses the bet
@@ -125,14 +136,6 @@ function startGame() {
     return; // End the game if dealer has Blackjack
   }
 
-  // Display the cards
-  dealer_Card1.style.backgroundImage =
-    "url('cards/" + dealer_Cards[0] + ".png')";
-  player_Card1.style.backgroundImage =
-    "url('cards/" + player_Cards[0] + ".png')";
-  player_Card2.style.backgroundImage =
-    "url('cards/" + player_Cards[1] + ".png')";
-  sumEl.innerText = "Sum: " + sum;
 
   console.log(card_value1, card_value2, dcard_value1, dcard_value2);
 }
