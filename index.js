@@ -1,4 +1,5 @@
-let betEl = document.getElementById("bet-el").value;
+const inputEl = document.getElementById("bet-el").value;
+const betEl = parseInt(inputEl, 10);
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -23,12 +24,13 @@ let player_number = {
   12: 10,
   13: 10,
 };
-let bet = parseInt(betEl);
+
 let sum = 0;
 let dsum = 0;
 let total_money = 1000;
 let win = 0;
 let lose = 0;
+let bet = betEl || 0; // Initialize bet with the value from input or 0 if not set
 
 function placeBet() {
   if (bet <= 0 || isNaN(bet)) {
