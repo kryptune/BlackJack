@@ -118,20 +118,23 @@ h1 {
   height: 75px;
 }
 
+h5, p {
+  color: rgb(255, 166, 0);
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+}
+
 h5 {
   font-size: 21px;
-  margin-top: 0;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  color: orangered;
 }
 
 p {
   font-size: 15px;
-  margin-top: 0;
-  border: 2px solid black;
-  margin-bottom: 20px;
-  color: rgb(255, 166, 0);
 }
 
 #win-lose-el {
@@ -141,3 +144,4 @@ p {
   padding: 5px;
   border-radius: 5px;
 }
+
