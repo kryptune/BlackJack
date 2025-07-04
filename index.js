@@ -134,12 +134,14 @@ function startGame() {
   if (total_money < bet * 2) {
     document.getElementById("ddown-btn").disabled = true;
   }
+
   // Check for Ace in player's first two cards
-  if (card_value1 === 11 && card_value2 === 11) {
+  if (sum === 22) {
     sum = 12; // If both are Aces, treat one as 1 instead of 11
   }
+
   // Check for Ace in dealer's first two cards
-  if (dcard_value1 === 11 && dcard_value2 === 11) {
+  if (dsum === 22) {
     dsum = 12; // If both are Aces, treat one as 1 instead of 11
   }
 
@@ -152,7 +154,18 @@ function startGame() {
     "url('cards/" + player_Cards[1] + ".png')";
   sumEl.innerText = "Sum: " + sum;
 
-  if (sum === 21) {
+  if (sum === 21 && dsum === 21) {
+    dealer_Card2.style.backgroundImage =
+      "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
+    msgEl.style.color = " #4d4d4d";
+    msgEl.innerText = "It's a Draw!";
+    total_money += bet; // return the bet
+    moneyEl.innerText = "Balance: $" + total_money;
+    winloseEl.innerText = "W: " + win + "  L: " + lose;
+    setTimeout(() => {
+      document.getElementById("myModal").style.display = "flex";
+    }, 1000);
+  } else if (sum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "green";
@@ -164,10 +177,7 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
     }, 1000);
-    return; // End the game if player has Blackjack
-  }
-
-  if (dsum === 21) {
+  } else if (dsum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "red";
@@ -179,7 +189,6 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
     }, 1000);
-    return; // End the game if dealer has Blackjack
   }
 
   console.log(card_value1, card_value2, dcard_value1, dcard_value2);
@@ -200,27 +209,35 @@ function stand() {
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
 
-  if (sum > 21) {
+  if (
+    sum > 21 &&
+    (player_Cards[0].slice(1) === "1" ||
+      player_Cards[1].slice(1) === "1" ||
+      player_Cards[2].slice(1) === "1")
+  ) {
+    sum -= 10; // Adjust for Ace if player busts
+  } else {
     msgEl.style.color = "red";
     msgEl.innerText = "You Lose!";
     lose += 1;
-  } else {
-    if (dealer_diff > player_diff) {
-      msgEl.style.color = "green";
-      msgEl.innerText = "You Win!";
-      win += 1;
-      total_money += bet * 2.5; // Player wins 2.5 times the bet
-      moneyEl.innerText = "Balance: $" + total_money;
-    } else if (dealer_diff === player_diff) {
-      msgEl.style.color = " #4d4d4d";
-      msgEl.innerText = "It's a Draw!";
-      total_money += bet; // return the bet
-    } else {
-      msgEl.style.color = "red";
-      msgEl.innerText = "You Lose!";
-      lose += 1;
-    }
   }
+
+  if (dealer_diff > player_diff) {
+    msgEl.style.color = "green";
+    msgEl.innerText = "You Win!";
+    win += 1;
+    total_money += bet * 2.5; // Player wins 2.5 times the bet
+    moneyEl.innerText = "Balance: $" + total_money;
+  } else if (dealer_diff === player_diff) {
+    msgEl.style.color = " #4d4d4d";
+    msgEl.innerText = "It's a Draw!";
+    total_money += bet; // return the bet
+  } else {
+    msgEl.style.color = "red";
+    msgEl.innerText = "You Lose!";
+    lose += 1;
+  }
+
   // Show the modal
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
