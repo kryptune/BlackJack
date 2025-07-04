@@ -47,7 +47,7 @@ h1 {
 }
 
 .card {
-  background-image: url('cards/back.png');
+  background-image: url("cards/back.png");
   width: 80px;
   height: 120px;
   margin: 0 5px;
@@ -74,6 +74,9 @@ h1 {
 .sum {
   font-size: 1.2rem;
   margin-top: 10px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+  font-weight: bold;
 }
 
 .modal {
@@ -126,11 +129,8 @@ p {
   color: yellow;
   margin-top: 0;
   margin-bottom: 20px;
-  text-shadow:
-    -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
   font-size: 15px;
 }
 
@@ -147,4 +147,3 @@ h5 {
   padding: 5px;
   border-radius: 5px;
 }
-
