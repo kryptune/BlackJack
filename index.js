@@ -110,6 +110,12 @@ function reset() {
     // If the deck is running low, regenerate it
     generateDeck();
   }
+
+  if (bet > total_money) {
+    alert("You cannot bet more than your total money.");
+    disableButtons();
+    return; // Exit the function if the bet is invalid
+  }
 }
 
 function startGame() {
