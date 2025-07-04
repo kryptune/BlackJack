@@ -120,7 +120,7 @@ function startGame() {
     disableButtons();
     return; // Exit the function if the bet is invalid
   }
-  
+
   dealer_Cards = [cards(), cards()];
   player_Cards = [cards(), cards(), cards()];
   let card_value1 = parseInt(player_Cards[0].slice(1));
@@ -293,6 +293,7 @@ function Yes() {
 function No() {
   document.getElementById("myModal").style.display = "none";
   reset();
+  disableButtons();
   if (total_money <= 0) {
     alert(
       "You have no money left to play. Please refresh the page to start over."
