@@ -132,6 +132,8 @@ function startGame() {
   sumEl.innerText = "Sum: " + sum;
 
   if (sum === 21) {
+    dealer_Card2.style.backgroundImage =
+      "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "green";
     msgEl.innerText = "Blackjack! You win!";
     total_money += bet * 2.5; // Player wins 2.5 times the bet
@@ -169,7 +171,6 @@ function stand() {
   moneyEl.innerText = "Balance: $" + total_money;
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
-  dealer_Card2.classList.toggle('flip');
   if (sum > 21) {
     msgEl.style.color = "red";
     msgEl.innerText = "You Lose!";
@@ -182,7 +183,7 @@ function stand() {
       total_money += bet * 2.5; // Player wins 2.5 times the bet
       moneyEl.innerText = "Balance: $" + total_money;
     } else if (dealer_diff === player_diff) {
-      msgEl.style.color = "gray";
+      msgEl.style.color = " #4d4d4d";
       msgEl.innerText = "It's a Draw!";
       total_money += bet; // return the bet
     } else {
@@ -195,7 +196,7 @@ function stand() {
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
     document.getElementById("myModal").style.display = "flex";
-  }, 3000);
+  }, 2000);
   winloseEl.innerText = "W: " + win + "  L: " + lose;
 
   console.log("BET:" + bet + " total_money:" + total_money);
