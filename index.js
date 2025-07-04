@@ -107,7 +107,7 @@ function reset() {
   if (fullDeck.length <= 4) {
     // If the deck is running low, regenerate it
     generateDeck();
-  
+  }
 }
 
 function startGame() {
