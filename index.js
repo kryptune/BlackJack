@@ -129,6 +129,10 @@ function startGame() {
   sum = player_number[card_value1] + player_number[card_value2];
   dsum = player_number[dcard_value1] + player_number[dcard_value2];
 
+  // Disable ddown button if total money is less than double the bet
+  if (total_money < bet * 2) {
+   document.getElementById("ddown-btn").disabled = true; 
+  }
   // Check for Ace in player's first two cards
   if (card_value1 === 11 && card_value2 === 11) {
     sum = 12; // If both are Aces, treat one as 1 instead of 11
