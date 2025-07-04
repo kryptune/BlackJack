@@ -110,16 +110,17 @@ function reset() {
     // If the deck is running low, regenerate it
     generateDeck();
   }
+}
+
+function startGame() {
+  reset(); // Reset the game state
 
   if (bet > total_money) {
     alert("You cannot bet more than your total money.");
     disableButtons();
     return; // Exit the function if the bet is invalid
   }
-}
-
-function startGame() {
-  reset(); // Reset the game state
+  
   dealer_Cards = [cards(), cards()];
   player_Cards = [cards(), cards(), cards()];
   let card_value1 = parseInt(player_Cards[0].slice(1));
@@ -131,7 +132,7 @@ function startGame() {
 
   // Disable ddown button if total money is less than double the bet
   if (total_money < bet * 2) {
-   document.getElementById("ddown-btn").disabled = true; 
+    document.getElementById("ddown-btn").disabled = true;
   }
   // Check for Ace in player's first two cards
   if (card_value1 === 11 && card_value2 === 11) {
