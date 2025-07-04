@@ -140,7 +140,7 @@ function startGame() {
     winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
-    }, 3000);
+    }, 1000);
     return; // End the game if player has Blackjack
   }
 
@@ -155,7 +155,7 @@ function startGame() {
     winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
-    }, 3000);
+    }, 1000);
     return; // End the game if dealer has Blackjack
   }
 
