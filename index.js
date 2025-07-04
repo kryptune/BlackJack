@@ -237,12 +237,20 @@ function surrender() {
   }, 100);
 }
 
+function disableButtons() {
+  document.getElementById("hit-btn").disabled = true;
+  document.getElementById("stand-btn").disabled = true;
+  document.getElementById("double-btn").disabled = true;
+  document.getElementById("surrender-btn").disabled = true;
+}
+
 function Yes() {
   document.getElementById("myModal").style.display = "none";
   if (total_money <= 0) {
     alert(
       "You have no money left to play. Please refresh the page to start over."
     );
+    disableButtons();
   }
   startGame();
 }
@@ -254,6 +262,7 @@ function No() {
     alert(
       "You have no money left to play. Please refresh the page to start over."
     );
+    disableButtons();
   } else {
     moneyEl.innerText = "Balance: $" + total_money;
     alert("Thank you for playing! Your total money is: $" + total_money);
