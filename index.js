@@ -226,6 +226,7 @@ function double_down() {
 }
 
 function surrender() {
+  msgEl.style.color = "red";
   msgEl.innerText = "You lose half of your bet. ";
   lose += 1;
   total_money -= bet / 2; // lose half of the bet
