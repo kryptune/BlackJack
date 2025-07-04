@@ -65,7 +65,7 @@ function generateDeck() {
 
 function enableButtons() {
   document.getElementById("hit-btn").disabled = false;
-  document.getElementById("stand-btn").disabled = false;  
+  document.getElementById("stand-btn").disabled = false;
   document.getElementById("ddown-btn").disabled = false;
   document.getElementById("surrender-btn").disabled = false;
 }
@@ -75,8 +75,10 @@ function placeBet() {
   bet = parseInt(document.getElementById("bet-el").value); // Get the bet value from the input field
   if (bet <= 0 || isNaN(bet)) {
     alert("Please enter a valid bet.");
+    disableButtons(); // Disable buttons if the bet is invalid
   } else if (bet > total_money) {
     alert("You cannot bet more than your total money.");
+    disableButtons(); // Disable buttons if the bet is invalid
   } else {
     moneyEl.innerText = "Balance: $" + total_money;
     enableButtons(); // Enable buttons after placing a bet
@@ -120,12 +122,6 @@ function startGame() {
   let dcard_value2 = parseInt(dealer_Cards[1].slice(1));
   sum = player_number[card_value1] + player_number[card_value2];
   dsum = player_number[dcard_value1] + player_number[dcard_value2];
-  
-  if (bet > total_money) {
-    alert("You cannot bet more than your total money.");
-    disableButtons();
-    return; // Exit the function if the bet is invalid
-  }
 
   // Check for Ace in player's first two cards
   if (card_value1 === 11 && card_value2 === 11) {
@@ -181,10 +177,18 @@ function startGame() {
 function stand() {
   dealer_diff = 21 - dsum;
   player_diff = 21 - sum;
+
+  if (bet > total_money) {
+    alert("You cannot bet more than your total money.");
+    disableButtons();
+    return; // Exit the function if the bet is invalid
+  }
+
   total_money -= bet;
   moneyEl.innerText = "Balance: $" + total_money;
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
+
   if (sum > 21) {
     msgEl.style.color = "red";
     msgEl.innerText = "You Lose!";
@@ -225,6 +229,12 @@ function stand() {
 }
 
 function hit() {
+  if (bet > total_money) {
+    alert("You cannot bet more than your total money.");
+    disableButtons();
+    return; // Exit the function if the bet is invalid
+  }
+
   player_Card3.style.display = "block"; // Show the third card
   let card_value3 = parseInt(player_Cards[2].slice(1));
   sum += player_number[card_value3];
