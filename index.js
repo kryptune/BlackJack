@@ -210,14 +210,10 @@ function stand() {
     "url('cards/" + dealer_Cards[1] + ".png')";
 
   if (sum > 21) {
-    if (sum > 21 && player_Cards.some((card) => card.slice(1) === "1")) {
-      sum -= 10; // Adjust for Ace if player busts
-    } else {
       msgEl.style.color = "red";
       msgEl.innerText = "You Lose!";
       lose += 1;
-    }
-  } else {
+  }else {
     if (dealer_diff > player_diff) {
       msgEl.style.color = "green";
       msgEl.innerText = "You Win!";
@@ -262,6 +258,10 @@ function hit() {
   player_Card3.style.display = "block"; // Show the third card
   let card_value3 = parseInt(player_Cards[2].slice(1));
   sum += player_number[card_value3];
+
+  if (sum > 21 && player_Cards.some((card) => card.slice(1) === "1")) {
+      sum -= 10; // Adjust for Ace if player busts
+  }
   player_Card3.style.backgroundImage =
     "url('cards/" + player_Cards[2] + ".png')";
   sumEl.innerText = "Sum: " + sum;
