@@ -209,35 +209,31 @@ function stand() {
   dealer_Card2.style.backgroundImage =
     "url('cards/" + dealer_Cards[1] + ".png')";
 
-  if (
-    sum > 21 &&
-    (player_Cards[0].slice(1) === "1" ||
-      player_Cards[1].slice(1) === "1" ||
-      player_Cards[2].slice(1) === "1")
-  ) {
-    sum -= 10; // Adjust for Ace if player busts
+  if (sum > 21) {
+    if (sum > 21 && player_Cards.some((card) => card.slice(1) === "1")) {
+      sum -= 10; // Adjust for Ace if player busts
+    } else {
+      msgEl.style.color = "red";
+      msgEl.innerText = "You Lose!";
+      lose += 1;
+    }
   } else {
-    msgEl.style.color = "red";
-    msgEl.innerText = "You Lose!";
-    lose += 1;
+    if (dealer_diff > player_diff) {
+      msgEl.style.color = "green";
+      msgEl.innerText = "You Win!";
+      win += 1;
+      total_money += bet * 2.5; // Player wins 2.5 times the bet
+      moneyEl.innerText = "Balance: $" + total_money;
+    } else if (dealer_diff === player_diff) {
+      msgEl.style.color = " #4d4d4d";
+      msgEl.innerText = "It's a Draw!";
+      total_money += bet; // return the bet
+    } else {
+      msgEl.style.color = "red";
+      msgEl.innerText = "You Lose!";
+      lose += 1;
+    }
   }
-
-  if (dealer_diff > player_diff) {
-    msgEl.style.color = "green";
-    msgEl.innerText = "You Win!";
-    win += 1;
-    total_money += bet * 2.5; // Player wins 2.5 times the bet
-    moneyEl.innerText = "Balance: $" + total_money;
-  } else if (dealer_diff === player_diff) {
-    msgEl.style.color = " #4d4d4d";
-    msgEl.innerText = "It's a Draw!";
-    total_money += bet; // return the bet
-  } else {
-    msgEl.style.color = "red";
-    msgEl.innerText = "You Lose!";
-    lose += 1;
-  }
-
   // Show the modal
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
