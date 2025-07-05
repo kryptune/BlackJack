@@ -393,7 +393,6 @@ function updateWinLoss(result) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username: username, // make sure username is defined globally
       win: result            // true or false
     })
   })
