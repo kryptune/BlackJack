@@ -353,7 +353,7 @@ document.addEventListener("keydown", function (event) {
 
 
 const username = 'rolando';  // Replace with dynamic username if needed
-const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
 
 // Get player info
 fetch(`${API_BASE}/${username}`)
