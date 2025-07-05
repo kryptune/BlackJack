@@ -170,10 +170,12 @@ function startGame() {
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "green";
     msgEl.innerText = "Blackjack! You win!";
+    updateBalance(bet * 2.5); // Player wins 2.5 times the bet
     total_money += bet * 2.5; // Player wins 2.5 times the bet
     moneyEl.innerText = "Balance: $" + total_money;
     win += 1;
-    winloseEl.innerText = "W: " + win + "  L: " + lose;
+    updateWinLoss (true); // Update win/loss count
+    //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
     }, 1000);
@@ -182,10 +184,12 @@ function startGame() {
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
     msgEl.style.color = "red";
     msgEl.innerText = "Dealer has Blackjack! You lose!";
+    updateBalance(-bet); // Player loses the bet
     total_money -= bet; // Player loses the bet
     moneyEl.innerText = "Balance: $" + total_money;
     lose += 1;
-    winloseEl.innerText = "W: " + win + "  L: " + lose;
+    updateWinLoss (false); // Update win/loss count
+    //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
     }, 1000);
@@ -212,11 +216,15 @@ function stand() {
   if (sum > 21) {
       msgEl.style.color = "red";
       msgEl.innerText = "You Lose!";
+      updateBalance(-bet); // Player loses the bet
+      updateWinLoss (false); // Update win/loss count
       lose += 1;
   }else {
     if (dealer_diff > player_diff) {
       msgEl.style.color = "green";
       msgEl.innerText = "You Win!";
+      updateBalance(bet * 2.5); // Player wins 2.5 times the bet
+      updateWinLoss (true); // Update win/loss count
       win += 1;
       total_money += bet * 2.5; // Player wins 2.5 times the bet
       moneyEl.innerText = "Balance: $" + total_money;
@@ -227,6 +235,8 @@ function stand() {
     } else {
       msgEl.style.color = "red";
       msgEl.innerText = "You Lose!";
+      updateBalance(-bet); // Player loses the bet
+      updateWinLoss (false); // Update win/loss count
       lose += 1;
     }
   }
@@ -276,6 +286,8 @@ function double_down() {
 function surrender() {
   msgEl.style.color = "red";
   msgEl.innerText = "You lose half of your bet. ";
+  updateBalance(-bet / 2); // Player loses half of the bet
+  updateWinLoss (false); // Update win/loss count
   lose += 1;
   total_money -= bet / 2; // lose half of the bet
   moneyEl.innerText = "Balance: $" + total_money;
@@ -338,3 +350,60 @@ document.addEventListener("keydown", function (event) {
     double_down(); // Call your custom function here
   }
 });
+
+
+const username = 'rolando';  // Replace with dynamic username if needed
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
+
+// Get player info
+fetch(`${API_BASE}/${username}`)
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
+    total_money = data.balance; // Initialize total_money with player's balance
+    win = data.wins; // Initialize win count
+    lose = data.losses; // Initialize lose count
+    winloseEl.innerText = "W: " + win + "  L: " + lose; // Update win/loss display
+    moneyEl.innerText = "Balance: $" + total_money; // Update the displayed balance
+  });
+
+// Update player balance (e.g. after a win/loss)
+function updateBalance(amount) {
+  fetch(`${API_BASE}/${username}/balance`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ amount })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
+    
+    // Play coin sound
+    const coinSound = document.getElementById('coin-sound');
+    coinSound.currentTime = 0; // rewind to start
+    coinSound.play().catch(err => {
+    console.warn('Sound playback failed:', err);
+  });
+  });
+}
+
+function updateWinLoss(win) {
+  //http://localhost:5000/@app_route
+  fetch('http://localhost:5000/update_winloss', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: username, // make sure username is defined globally
+      win: win            // true or false
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      console.error(data.error);
+    } else {
+      winloseEl.innerText = "W: " + data.wins + "  L: " + data.losses;
+    }
+  })
+  .catch(err => console.error('Fetch error:', err));
+}
