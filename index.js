@@ -387,14 +387,14 @@ function updateBalance(amount) {
   });
 }
 
-function updateWinLoss(win) {
+function updateWinLoss(result) {
   //http://localhost:5000/@app_route
   fetch(`${API_BASE}/${username}/update_winloss`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username: username, // make sure username is defined globally
-      win: win            // true or false
+      win: result            // true or false
     })
   })
   .then(res => res.json())
