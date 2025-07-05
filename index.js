@@ -43,10 +43,63 @@ let dealer_Cards = [];
 let player_Cards = [];
 let sum = 0;
 let dsum = 0;
-let total_money = 1000;
-let win = 0;
-let lose = 0;
 let bet = 0;
+
+
+const username = 'rolando';  // Replace with dynamic username if needed
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
+
+// Get player info
+fetch(`${API_BASE}/${username}`)
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
+    total_money = data.balance; // Initialize total_money with player's balance
+    win = data.wins; // Initialize win count
+    lose = data.losses; // Initialize lose count
+    winloseEl.innerText = "W: " + win + "  L: " + lose; // Update win/loss display
+    moneyEl.innerText = "Balance: $" + total_money; // Update the displayed balance
+  });
+
+// Update player balance (e.g. after a win/loss)
+function updateBalance(amount) {
+  fetch(`${API_BASE}/${username}/balance`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ amount })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
+    total_money = data.balance; // Update total_money with new balance
+    // Play coin sound
+    const coinSound = document.getElementById('coin-sound');
+    coinSound.currentTime = 0; // rewind to start
+    coinSound.play().catch(err => {
+    console.warn('Sound playback failed:', err);
+  });
+  });
+}
+
+function updateWinLoss(result) {
+  //http://localhost:5000/@app_route
+  fetch(`${API_BASE}/${username}/update_winloss`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      win: result            // true or false
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.error) {
+      console.error(data.error);
+    } else {
+      winloseEl.innerText = "W: " + data.wins + "  L: " + data.losses;
+    }
+  })
+  .catch(err => console.error('Fetch error:', err));
+}
 
 function generateDeck() {
   fullDeck.length = 0; // Clear the existing deck
@@ -352,57 +405,4 @@ document.addEventListener("keydown", function (event) {
 });
 
 
-const username = 'rolando';  // Replace with dynamic username if needed
-const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
 
-// Get player info
-fetch(`${API_BASE}/${username}`)
-  .then(res => res.json())
-  .then(data => {
-    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
-    total_money = data.balance; // Initialize total_money with player's balance
-    win = data.wins; // Initialize win count
-    lose = data.losses; // Initialize lose count
-    winloseEl.innerText = "W: " + win + "  L: " + lose; // Update win/loss display
-    moneyEl.innerText = "Balance: $" + total_money; // Update the displayed balance
-  });
-
-// Update player balance (e.g. after a win/loss)
-function updateBalance(amount) {
-  fetch(`${API_BASE}/${username}/balance`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount })
-  })
-  .then(res => res.json())
-  .then(data => {
-    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
-    
-    // Play coin sound
-    const coinSound = document.getElementById('coin-sound');
-    coinSound.currentTime = 0; // rewind to start
-    coinSound.play().catch(err => {
-    console.warn('Sound playback failed:', err);
-  });
-  });
-}
-
-function updateWinLoss(result) {
-  //http://localhost:5000/@app_route
-  fetch(`${API_BASE}/${username}/update_winloss`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      win: result            // true or false
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.error) {
-      console.error(data.error);
-    } else {
-      winloseEl.innerText = "W: " + data.wins + "  L: " + data.losses;
-    }
-  })
-  .catch(err => console.error('Fetch error:', err));
-}
