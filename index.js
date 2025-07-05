@@ -389,7 +389,7 @@ function updateBalance(amount) {
 
 function updateWinLoss(win) {
   //http://localhost:5000/@app_route
-  fetch('http://localhost:5000/update_winloss', {
+  fetch(`${API_BASE}/${username}/update_winloss`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
