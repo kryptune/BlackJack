@@ -353,10 +353,10 @@ document.addEventListener("keydown", function (event) {
 
 
 const username = 'rolando';  // Replace with dynamic username if needed
-const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
 
 // Get player info
-fetch(`${API_BASE}/player/${username}`)
+fetch(`${API_BASE}/${username}`)
   .then(res => res.json())
   .then(data => {
     document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
@@ -369,7 +369,7 @@ fetch(`${API_BASE}/player/${username}`)
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
-  fetch(`${API_BASE}/player/${username}/balance`, {
+  fetch(`${API_BASE}/${username}/balance`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ amount })
@@ -389,7 +389,7 @@ function updateBalance(amount) {
 
 function updateWinLoss(win) {
   //http://localhost:5000/@app_route
-  fetch(`${API_BASE}/update_winloss`, {
+  fetch(`${API_BASE}/${username}/update_winloss`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
