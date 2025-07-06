@@ -80,8 +80,46 @@ function signIn() {
     });
 }
 
+function createAccountForm() {
+  document.getElementById("sign-in").style.display = "none";
+  document.getElementById("create-account").style.display = "flex";
+}
+
 function createAccount() {
-  const newUsername = document.getElementById("new-username-el").value; 
+  const newUsername = document.getElementById("new-username-el").value;
+  const newPassword = document.getElementById("new-password-el").value;
+  const confirmPassword = document.getElementById("confirm-password-el").value;
+  const email = document.getElementById("email-el").value;
+  if (newPassword !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+  fetch("/create_account", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: newUsername,
+      password: newPassword,
+      email: email,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === "success") {
+        alert("Account created successfully! You can now sign in.");
+        document.getElementById("sign-in").style.display = "flex";
+        // Optionally, you can redirect to the sign-in page or clear the form
+      } else {
+        alert("Error creating account: " + data.message);
+      }
+    })  
+    .catch((error) => {
+      console.error("Error creating account:", error);
+      alert("An error occurred while creating the account. Please try again.");
+    } );
+} 
+
+
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {

@@ -142,6 +142,8 @@ h5 {
   justify-content: center;
 }
 
+
+
 /* Modal content box */
 .modal-content {
   background-color: white;
@@ -176,6 +178,20 @@ h5 {
   display: block;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.modal-content h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+  color: black;
+}
+
+.modal-content h3 {
+  font-size: 16px;
+  text-align: left;
+  margin-top: 10px;
+  color: gray;
 }
 
 .welcome-box {
