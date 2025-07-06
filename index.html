@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blackjack Game</title>
@@ -28,9 +29,12 @@
         <button id="sign-in-btn" onclick="signIn()">Sign In</button>
         <div id="continue-el"> or continue with </div>
         <div class="social-buttons">
-          <button id="google-btn" onclick="googleSignIn()"> Google </button>
-          <button id="facebook-btn" onclick="facebookSignIn()"> Facebook </button>
-          <button id="github-btn" onclick="githubSignIn()"> GitHub </button>
+          <button class="social-btn google">
+            <i class="fab fa-google"></i> Google
+          </button>
+          <button class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </button>
         </div> 
         <span class="clickable" onclick="createAccount()">Don't have an account? Create Now</span>
       </div>
