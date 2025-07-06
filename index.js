@@ -404,5 +404,13 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-
+function forgotpwd()  {
+  const email = prompt("Please enter your email address:");
+  if (email) {
+    alert("A password reset link has been sent to " + email);
+    // Here you would typically send the email to your backend for processing
+  } else {
+    alert("Email is required for password reset.");
+  }
+}
 

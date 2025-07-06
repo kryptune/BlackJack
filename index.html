@@ -7,9 +7,30 @@
     <title>Blackjack Game</title>
   </head>
   <body>
-    <div class="balance" id="money-el" >Balance: ${total_money}</div>
+    <div class="balance" id="money-el">Balance: ${total_money}</div>
 
     <h1>Blackjack</h1>
+
+    <div id="sign-in" class="modal" style="display: flex">
+      <div id="welcome-el">WELCOME</div>
+      <h2 id="user-el">Username</h2> 
+      <input
+        type="text"
+        id="username-el"
+        placeholder="Enter your username"> </input>
+      <h2 id="pwd-el">Password</h2>
+      <input
+        type="password"
+        id="password-el"
+        placeholder="Enter your password"> </input>
+      <span class="clickable" onclick="forgotpwd()">Forgot password?</span>
+      <button id="sign-in-btn" onclick="signIn()">Sign In</button>
+      <div id="continue-el"> or continue with </div>
+      <button id="google-btn" onclick="googleSignIn()"> Google </button>
+      <button id="facebook-btn" onclick="facebookSignIn()"> Facebook </button>
+      <button id="github-btn" onclick="githubSignIn()"> GitHub </button> 
+      <span class="clickable" onclick="createAccount()">Don't have an account? Create Now</span>
+    </div>
 
     <div class="bet-section">
       <label for="bet-el">Enter Your Bet:</label>
@@ -20,27 +41,17 @@
     <div class="dealer-cards">
       <h2>Dealer's Cards:</h2>
       <div class="cards">
-        <div
-          class="card" id="dealer-card-1"
-        ></div>
-        <div
-          class="card" id="dealer-card-2" 
-        ></div>
+        <div class="card" id="dealer-card-1"></div>
+        <div class="card" id="dealer-card-2"></div>
       </div>
     </div>
 
     <div class="player-cards">
       <h2>Your Cards:</h2>
       <div class="cards">
-        <div
-          class="card" id="player-card-1"
-        ></div>
-        <div
-          class="card" id="player-card-2"
-        ></div>
-        <div
-          class="card" id="player-card-3" 
-        ></div>
+        <div class="card" id="player-card-1"></div>
+        <div class="card" id="player-card-2"></div>
+        <div class="card" id="player-card-3"></div>
       </div>
       <div class="sum" id="sum-el">Sum: 0</div>
     </div>
@@ -48,12 +59,16 @@
     <div class="actions">
       <button disabled id="hit-btn" onclick="hit()">HIT</button>
       <button disabled id="stand-btn" onclick="stand()">STAND</button>
-      <button disabled id="ddown-btn" onclick="double_down()">DOUBLE DOWN</button>
-      <button disabled id="surrender-btn" onclick="surrender()">SURRENDER</button>
+      <button disabled id="ddown-btn" onclick="double_down()">
+        DOUBLE DOWN
+      </button>
+      <button disabled id="surrender-btn" onclick="surrender()">
+        SURRENDER
+      </button>
     </div>
     <p id="win-lose-el">W: 0 L: 0</p>
 
-    <div id="myModal" class="modal" style="display: none;">
+    <div id="myModal" class="modal" style="display: none">
       <div class="modal-content">
         <h5 id="msg-el">HI</h5>
         <p>Do you want to play again?</p>

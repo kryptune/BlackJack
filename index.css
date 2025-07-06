@@ -80,7 +80,6 @@ h1 {
 }
 
 .modal {
-  display: none; /* Hidden by default */
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -146,4 +145,10 @@ h5 {
   color: white;
   padding: 5px;
   border-radius: 5px;
+}
+
+.clickable {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }
