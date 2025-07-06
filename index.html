@@ -12,24 +12,26 @@
     <h1>Blackjack</h1>
 
     <div id="sign-in" class="modal" style="display: flex">
-      <div id="welcome-el">WELCOME</div>
-      <h2 id="user-el">Username</h2> 
-      <input
-        type="text"
-        id="username-el"
-        placeholder="Enter your username"> </input>
-      <h2 id="pwd-el">Password</h2>
-      <input
-        type="password"
-        id="password-el"
-        placeholder="Enter your password"> </input>
-      <span class="clickable" onclick="forgotpwd()">Forgot password?</span>
-      <button id="sign-in-btn" onclick="signIn()">Sign In</button>
-      <div id="continue-el"> or continue with </div>
-      <button id="google-btn" onclick="googleSignIn()"> Google </button>
-      <button id="facebook-btn" onclick="facebookSignIn()"> Facebook </button>
-      <button id="github-btn" onclick="githubSignIn()"> GitHub </button> 
-      <span class="clickable" onclick="createAccount()">Don't have an account? Create Now</span>
+      <div class="modal-content">
+        <div id="welcome-el">WELCOME</div>
+        <h2 id="user-el">Username</h2> 
+        <input
+          type="text"
+          id="username-el"
+          placeholder="Enter your username"> </input>
+        <h2 id="pwd-el">Password</h2>
+        <input
+          type="password"
+          id="password-el"
+          placeholder="Enter your password"> </input>
+        <span class="clickable" onclick="forgotpwd()">Forgot password?</span>
+        <button id="sign-in-btn" onclick="signIn()">Sign In</button>
+        <div id="continue-el"> or continue with </div>
+        <button id="google-btn" onclick="googleSignIn()"> Google </button>
+        <button id="facebook-btn" onclick="facebookSignIn()"> Facebook </button>
+        <button id="github-btn" onclick="githubSignIn()"> GitHub </button> 
+        <span class="clickable" onclick="createAccount()">Don't have an account? Create Now</span>
+      </div>
     </div>
 
     <div class="bet-section">
