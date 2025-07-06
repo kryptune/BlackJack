@@ -144,7 +144,7 @@ h5 {
 
 /* Modal content box */
 .modal-content {
-  background-color: #ffffffcc;
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
@@ -154,4 +154,13 @@ h5 {
 
   /* Offset slightly lower while keeping center alignment */
   transform: translateY(10%);
+}
+
+.modal-content h2 {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: black;
 }
