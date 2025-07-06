@@ -45,60 +45,83 @@ let sum = 0;
 let dsum = 0;
 let bet = 0;
 
-
-const username = 'rolando';  // Replace with dynamic username if needed
+const username = document.getElementById("username-el").value;
+const password = document.getElementById("password-el").value;
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
 
 // Get player info
-fetch(`${API_BASE}/${username}`)
-  .then(res => res.json())
-  .then(data => {
-    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
-    total_money = data.balance; // Initialize total_money with player's balance
-    win = data.wins; // Initialize win count
-    lose = data.losses; // Initialize lose count
-    winloseEl.innerText = "W: " + win + "  L: " + lose; // Update win/loss display
-    moneyEl.innerText = "Balance: $" + total_money; // Update the displayed balance
-  });
+
+function signIn() {
+  fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === "success") {
+        document.getElementById("sign-in").style.display = "none";
+
+        fetch(`${API_BASE}/${username}`)
+          .then((res) => res.json())
+          .then((data) => {
+            document.querySelector(".balance").innerText =
+              "Balance: $" + data.balance;
+            total_money = data.balance; // Initialize total_money with player's balance
+            win = data.wins; // Initialize win count
+            lose = data.losses; // Initialize lose count
+            winloseEl.innerText = "W: " + win + "  L: " + lose; // Update win/loss display
+            moneyEl.innerText = "Balance: $" + total_money; // Update the displayed balance
+          });
+        // Log user in (store token, redirect, etc.)
+      } else {
+        alert("Invalid username or password");
+      }
+    });
+}
+
+function createAccount() {
+  const newUsername = document.getElementById("new-username-el").value; 
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
   fetch(`${API_BASE}/${username}/balance`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ amount }),
   })
-  .then(res => res.json())
-  .then(data => {
-    document.querySelector('.balance').innerText = 'Balance: $' + data.balance;
-    total_money = data.balance; // Update total_money with new balance
-    // Play coin sound
-    const coinSound = document.getElementById('coin-sound');
-    coinSound.currentTime = 0; // rewind to start
-    coinSound.play().catch(err => {
-    console.warn('Sound playback failed:', err);
-  });
-  });
+    .then((res) => res.json())
+    .then((data) => {
+      document.querySelector(".balance").innerText =
+        "Balance: $" + data.balance;
+      total_money = data.balance; // Update total_money with new balance
+      // Play coin sound
+      const coinSound = document.getElementById("coin-sound");
+      coinSound.currentTime = 0; // rewind to start
+      coinSound.play().catch((err) => {
+        console.warn("Sound playback failed:", err);
+      });
+    });
 }
 
 function updateWinLoss(result) {
   //http://localhost:5000/@app_route
   fetch(`${API_BASE}/${username}/update_winloss`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      win: result            // true or false
+      win: result, // true or false
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.error) {
+        console.error(data.error);
+      } else {
+        winloseEl.innerText = "W: " + data.wins + "  L: " + data.losses;
+      }
     })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.error) {
-      console.error(data.error);
-    } else {
-      winloseEl.innerText = "W: " + data.wins + "  L: " + data.losses;
-    }
-  })
-  .catch(err => console.error('Fetch error:', err));
+    .catch((err) => console.error("Fetch error:", err));
 }
 
 function generateDeck() {
@@ -227,7 +250,7 @@ function startGame() {
     total_money += bet * 2.5; // Player wins 2.5 times the bet
     moneyEl.innerText = "Balance: $" + total_money;
     win += 1;
-    updateWinLoss (true); // Update win/loss count
+    updateWinLoss(true); // Update win/loss count
     //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
@@ -241,7 +264,7 @@ function startGame() {
     total_money -= bet; // Player loses the bet
     moneyEl.innerText = "Balance: $" + total_money;
     lose += 1;
-    updateWinLoss (false); // Update win/loss count
+    updateWinLoss(false); // Update win/loss count
     //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
       document.getElementById("myModal").style.display = "flex";
@@ -267,17 +290,17 @@ function stand() {
     "url('cards/" + dealer_Cards[1] + ".png')";
 
   if (sum > 21) {
-      msgEl.style.color = "red";
-      msgEl.innerText = "You Lose!";
-      updateBalance(-bet); // Player loses the bet
-      updateWinLoss (false); // Update win/loss count
-      lose += 1;
-  }else {
+    msgEl.style.color = "red";
+    msgEl.innerText = "You Lose!";
+    updateBalance(-bet); // Player loses the bet
+    updateWinLoss(false); // Update win/loss count
+    lose += 1;
+  } else {
     if (dealer_diff > player_diff) {
       msgEl.style.color = "green";
       msgEl.innerText = "You Win!";
       updateBalance(bet * 2.5); // Player wins 2.5 times the bet
-      updateWinLoss (true); // Update win/loss count
+      updateWinLoss(true); // Update win/loss count
       win += 1;
       total_money += bet * 2.5; // Player wins 2.5 times the bet
       moneyEl.innerText = "Balance: $" + total_money;
@@ -289,7 +312,7 @@ function stand() {
       msgEl.style.color = "red";
       msgEl.innerText = "You Lose!";
       updateBalance(-bet); // Player loses the bet
-      updateWinLoss (false); // Update win/loss count
+      updateWinLoss(false); // Update win/loss count
       lose += 1;
     }
   }
@@ -323,7 +346,7 @@ function hit() {
   sum += player_number[card_value3];
 
   if (sum > 21 && player_Cards.some((card) => card.slice(1) === "1")) {
-      sum -= 10; // Adjust for Ace if player busts
+    sum -= 10; // Adjust for Ace if player busts
   }
   player_Card3.style.backgroundImage =
     "url('cards/" + player_Cards[2] + ".png')";
@@ -340,7 +363,7 @@ function surrender() {
   msgEl.style.color = "red";
   msgEl.innerText = "You lose half of your bet. ";
   updateBalance(-bet / 2); // Player loses half of the bet
-  updateWinLoss (false); // Update win/loss count
+  updateWinLoss(false); // Update win/loss count
   lose += 1;
   total_money -= bet / 2; // lose half of the bet
   moneyEl.innerText = "Balance: $" + total_money;
@@ -404,7 +427,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function forgotpwd()  {
+function forgotpwd() {
   const email = prompt("Please enter your email address:");
   if (email) {
     alert("A password reset link has been sent to " + email);
@@ -413,4 +436,3 @@ function forgotpwd()  {
     alert("Email is required for password reset.");
   }
 }
-
