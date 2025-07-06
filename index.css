@@ -152,7 +152,7 @@ h5 {
   height: 500px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
-
+  padding: 20px;
   /* Offset slightly lower while keeping center alignment */
   transform: translateY(10%);
 }
@@ -178,10 +178,6 @@ h5 {
   display: block;
   border-radius: 5px;
   border: 1px solid #ccc;
-}
-
-#create-account-content {
-  padding: 20px;
 }
 
 .modal-content h1 {
