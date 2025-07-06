@@ -161,7 +161,7 @@ h5 {
   font-size: 17px;
   font-weight: bold;
   text-align: left;
-  margin: 20px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
   color: black;
 }
 
@@ -180,14 +180,14 @@ h5 {
   border: 1px solid #ccc;
 }
 
-#create-account {
+#create-account-content {
   padding: 20px;
 }
 
 .modal-content h1 {
   font-size: 24px;
   text-align: left;
-  margin-top: 20px;
+  margin-top: 10px;
   color: black;
 }
 
