@@ -180,9 +180,13 @@ h5 {
   border: 1px solid #ccc;
 }
 
+#create-account {
+  padding: 20px;
+}
+
 .modal-content h1 {
   font-size: 24px;
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
   color: black;
 }
@@ -192,6 +196,20 @@ h5 {
   text-align: left;
   margin-top: 10px;
   color: gray;
+}
+
+#create-account-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px;
+  cursor: pointer;
+  width: 320px;
 }
 
 .welcome-box {
