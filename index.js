@@ -55,7 +55,7 @@ const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 function signIn() {
   const username = document.getElementById("username-el").value;
   const password = document.getElementById("password-el").value;
-  fetch("/login", {
+  fetch(`${API_BASE}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -203,7 +203,7 @@ function createAccount() {
     return;
   }
 
-  fetch("/register", {
+  fetch(`${API_BASE}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
