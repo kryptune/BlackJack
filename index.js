@@ -47,7 +47,7 @@ let bet = 0;
 
 const username = document.getElementById("username-el").value;
 const password = document.getElementById("password-el").value;
-const API_BASE = "https://blackjack-backend-b1d0.onrender.com/player";
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 
 // Get player info
 
@@ -62,7 +62,7 @@ function signIn() {
       if (data.status === "success") {
         document.getElementById("sign-in").style.display = "none";
 
-        fetch(`${API_BASE}/${username}`)
+        fetch(`${API_BASE}/player/${username}`)
           .then((res) => res.json())
           .then((data) => {
             document.querySelector(".balance").innerText =
@@ -85,15 +85,28 @@ function createAccountForm() {
   document.getElementById("create-account").style.display = "flex";
 }
 
+function signInForm() {
+  document.getElementById("create-account").style.display = "none";
+  document.getElementById("sign-in").style.display = "flex";
+}
+
 function createAccount() {
-  const newUsername = document.getElementById("new-username-el").value;
-  const newPassword = document.getElementById("new-password-el").value;
-  const confirmPassword = document.getElementById("confirm-password-el").value;
-  const email = document.getElementById("email-el").value;
+  const newUsername = document.getElementById("new-username-el").value.trim();
+  const newPassword = document.getElementById("new-password-el").value.trim();
+  const confirmPassword = document
+    .getElementById("confirm-password-el")
+    .value.trim();
+  const email = document.getElementById("email-el").value.trim();
+  if (!newUsername || !newPassword || !confirmPassword || !email) {
+    alert("All fields are required");
+    return;
+  }
+
   if (newPassword !== confirmPassword) {
     alert("Passwords do not match");
     return;
   }
+
   fetch("/create_account", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -107,23 +120,27 @@ function createAccount() {
     .then((data) => {
       if (data.status === "success") {
         alert("Account created successfully! You can now sign in.");
-        document.getElementById("sign-in").style.display = "flex";
+        document.getElementById("new-username-el").value = "";
+        document.getElementById("new-password-el").value = "";
+        document.getElementById("confirm-password-el").value = "";
+        document.getElementById("email-el").value = "";
+        username = newUsername; // Update the username variable
+        password = newPassword; // Update the password variable
+        signIn(); // Automatically sign in the user after account creation
         // Optionally, you can redirect to the sign-in page or clear the form
       } else {
         alert("Error creating account: " + data.message);
       }
-    })  
+    })
     .catch((error) => {
       console.error("Error creating account:", error);
       alert("An error occurred while creating the account. Please try again.");
-    } );
-} 
-
-
+    });
+}
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
-  fetch(`${API_BASE}/${username}/balance`, {
+  fetch(`${API_BASE}/player/${username}/balance`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount }),
@@ -144,7 +161,7 @@ function updateBalance(amount) {
 
 function updateWinLoss(result) {
   //http://localhost:5000/@app_route
-  fetch(`${API_BASE}/${username}/update_winloss`, {
+  fetch(`${API_BASE}/player/${username}/update_winloss`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
