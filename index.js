@@ -153,6 +153,7 @@ function createAccount() {
     .value;
   const email = document.getElementById("email-el").value;
   // Validate input fields
+  console.log(newUsername, newPassword, confirmPassword, email);
   if (!newUsername || !newPassword || !confirmPassword || !email) {
     alert("All fields are required");
     return;
