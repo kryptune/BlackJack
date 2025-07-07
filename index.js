@@ -44,6 +44,7 @@ let player_Cards = [];
 let sum = 0;
 let dsum = 0;
 let bet = 0;
+let total_money = 0; // Initialize total_money
 
 const username = document.getElementById("username-el").value;
 const password = document.getElementById("password-el").value;
@@ -106,6 +107,12 @@ function isPasswordStrong(password) {
   );
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("new-password-el")
+    .addEventListener("input", checkPasswordStrength);
+});
+
 function checkPasswordStrength() {
   const newpassword = document.getElementById("new-password-el").value;
   const strengthText = document.getElementById("password-strength");
@@ -134,7 +141,6 @@ function checkPasswordStrength() {
   }
 }
 
-
 function createAccount() {
   const newUsername = document.getElementById("new-username-el").value.trim();
   const newPassword = document.getElementById("new-password-el").value.trim();
@@ -149,7 +155,9 @@ function createAccount() {
   }
 
   if (!isPasswordStrong(newPassword)) {
-    alert("Password must be at least 8 characters and include uppercase, lowercase, number, and special character.");
+    alert(
+      "Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
+    );
     return;
   }
 
