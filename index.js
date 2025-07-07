@@ -146,18 +146,17 @@ function checkPasswordStrength() {
 }
 
 function createAccount() {
+  const newUsername = document.getElementById("new-username-el").value;
+  const newPassword = document.getElementById("new-password-el").value;
+  const confirmPassword = document
+    .getElementById("confirm-password-el")
+    .value;
+  const email = document.getElementById("email-el").value;
   // Validate input fields
   if (!newUsername || !newPassword || !confirmPassword || !email) {
     alert("All fields are required");
     return;
   }
-
-  const newUsername = document.getElementById("new-username-el").value.trim();
-  const newPassword = document.getElementById("new-password-el").value.trim();
-  const confirmPassword = document
-    .getElementById("confirm-password-el")
-    .value.trim();
-  const email = document.getElementById("email-el").value.trim();
 
   if (!isPasswordStrong(newPassword)) {
     alert(
