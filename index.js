@@ -90,6 +90,51 @@ function signInForm() {
   document.getElementById("sign-in").style.display = "flex";
 }
 
+function isPasswordStrong(password) {
+  const minLength = 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  return (
+    password.length >= minLength &&
+    hasUppercase &&
+    hasLowercase &&
+    hasNumber &&
+    hasSpecialChar
+  );
+}
+
+function checkPasswordStrength() {
+  const newpassword = document.getElementById("new-password-el").value;
+  const strengthText = document.getElementById("password-strength");
+
+  let strength = 0;
+
+  // Criteria
+  if (newpassword.length >= 8) strength++;
+  if (/[A-Z]/.test(newpassword)) strength++;
+  if (/[a-z]/.test(newpassword)) strength++;
+  if (/[0-9]/.test(newpassword)) strength++;
+  if (/[!@#$%^&*(),.?":{}|<>]/.test(newpassword)) strength++;
+
+  // Update message and color
+  if (newpassword.length === 0) {
+    strengthText.innerText = "";
+  } else if (strength <= 4) {
+    strengthText.innerText = "Weak";
+    strengthText.style.color = "red";
+  } else if (strength <= 7) {
+    strengthText.innerText = "Moderate";
+    strengthText.style.color = "orange";
+  } else {
+    strengthText.innerText = "Strong";
+    strengthText.style.color = "green";
+  }
+}
+
+
 function createAccount() {
   const newUsername = document.getElementById("new-username-el").value.trim();
   const newPassword = document.getElementById("new-password-el").value.trim();
@@ -97,8 +142,14 @@ function createAccount() {
     .getElementById("confirm-password-el")
     .value.trim();
   const email = document.getElementById("email-el").value.trim();
+  // Validate input fields
   if (!newUsername || !newPassword || !confirmPassword || !email) {
     alert("All fields are required");
+    return;
+  }
+
+  if (!isPasswordStrong(newPassword)) {
+    alert("Password must be at least 8 characters and include uppercase, lowercase, number, and special character.");
     return;
   }
 
