@@ -143,6 +143,7 @@ function checkPasswordStrength() {
     strengthText.innerText = "Strong";
     strengthText.style.color = "green";
   }
+  console.log("Password strength:", strength);
 }
 
 function createAccount() {
