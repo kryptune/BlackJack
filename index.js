@@ -48,13 +48,13 @@ let total_money = 0; // Initialize total_money
 let win = 0; // Initialize win count
 let lose = 0; // Initialize lose count
 
-const username = document.getElementById("username-el").value;
-const password = document.getElementById("password-el").value;
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 
 // Get player info
 
 function signIn() {
+  const username = document.getElementById("username-el").value;
+  const password = document.getElementById("password-el").value;
   fetch("/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -167,27 +167,27 @@ function createAccount() {
     alert("All fields are required");
     if (!newUsername) {
       document.getElementById("new-username-el").style.borderColor = "red";
-    }else {
+    } else {
       document.getElementById("new-username-el").style.borderColor = "#ccc";
     }
 
     if (!newPassword) {
       document.getElementById("new-password-el").style.borderColor = "red";
-    }else {
+    } else {
       document.getElementById("new-password-el").style.borderColor = "#ccc";
     }
 
     if (!confirmPassword) {
       document.getElementById("confirm-password-el").style.borderColor = "red";
-    }else {
+    } else {
       document.getElementById("confirm-password-el").style.borderColor = "#ccc";
     }
 
     if (!email) {
       document.getElementById("email-el").style.borderColor = "red";
-    }else {
+    } else {
       document.getElementById("email-el").style.borderColor = "#ccc";
-    }       
+    }
     return;
   }
 
