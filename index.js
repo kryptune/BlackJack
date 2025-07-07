@@ -156,15 +156,23 @@ function createAccount() {
     alert("All fields are required");
     if (!newUsername) {
       document.getElementById("new-username-el").style.borderColor = "red";
+    }else {
+      document.getElementById("new-username-el").style.borderColor = "#ccc";
     }
     if (!newPassword) {
       document.getElementById("new-password-el").style.borderColor = "red";
+    }else {
+      document.getElementById("new-username-el").style.borderColor = "#ccc";
     }
     if (!confirmPassword) {
       document.getElementById("confirm-password-el").style.borderColor = "red";
+    }else {
+      document.getElementById("new-username-el").style.borderColor = "#ccc";
     }
     if (!email) {
       document.getElementById("email-el").style.borderColor = "red";
+    }else {
+      document.getElementById("new-username-el").style.borderColor = "#ccc";
     }       
     return;
   }
