@@ -45,6 +45,8 @@ let sum = 0;
 let dsum = 0;
 let bet = 0;
 let total_money = 0; // Initialize total_money
+let win = 0; // Initialize win count
+let lose = 0; // Initialize lose count
 
 const username = document.getElementById("username-el").value;
 const password = document.getElementById("password-el").value;
@@ -114,20 +116,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function checkPasswordStrength() {
-  const newpassword = document.getElementById("new-password-el").value;
+  const passwordEl = document.getElementById("new-password-el");
   const strengthText = document.getElementById("password-strength");
+
+  if (!passwordEl || !strengthText) return;
+
+  const password = passwordEl.value;
 
   let strength = 0;
 
-  // Criteria
-  if (newpassword.length >= 8) strength++;
-  if (/[A-Z]/.test(newpassword)) strength++;
-  if (/[a-z]/.test(newpassword)) strength++;
-  if (/[0-9]/.test(newpassword)) strength++;
-  if (/[!@#$%^&*(),.?":{}|<>]/.test(newpassword)) strength++;
+  if (password.length >= 8) strength++;
+  if (/[A-Z]/.test(password)) strength++;
+  if (/[a-z]/.test(password)) strength++;
+  if (/[0-9]/.test(password)) strength++;
+  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
 
-  // Update message and color
-  if (newpassword.length === 0) {
+  if (password.length === 0) {
     strengthText.innerText = "";
   } else if (strength <= 4) {
     strengthText.innerText = "Weak";
