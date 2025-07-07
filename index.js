@@ -154,6 +154,18 @@ function createAccount() {
   console.log(newUsername, newPassword, confirmPassword, email);
   if (!newUsername || !newPassword || !confirmPassword || !email) {
     alert("All fields are required");
+    if (!newUsername) {
+      document.getElementById("new-username-el").focus();
+    }
+    if (!newPassword) {
+      document.getElementById("new-password-el").focus();
+    }
+    if (!confirmPassword) {
+      document.getElementById("confirm-password-el").focus();
+    }
+    if (!email) {
+      document.getElementById("email-el").focus();
+    }       
     return;
   }
 
