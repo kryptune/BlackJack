@@ -148,9 +148,7 @@ function checkPasswordStrength() {
 function createAccount() {
   const newUsername = document.getElementById("new-username-el").value;
   const newPassword = document.getElementById("new-password-el").value;
-  const confirmPassword = document
-    .getElementById("confirm-password-el")
-    .value;
+  const confirmPassword = document.getElementById("confirm-password-el").value;
   const email = document.getElementById("email-el").value;
   // Validate input fields
   console.log(newUsername, newPassword, confirmPassword, email);
