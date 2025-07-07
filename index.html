@@ -21,10 +21,11 @@
           id="username-el"
           placeholder="Enter your username"> </input>
         <h2 id="pwd-el">Password</h2>
-        <input
-          type="password"
-          id="password-el"
-          placeholder="Enter your password"> </input>
+        <div style="position: relative;">
+          <input type="password" id="password-input" />
+          <i id="toggle-icon" class="fa fa-eye" onclick="togglePassword()" 
+            style="position:absolute; right:10px; top:10px; cursor:pointer;"></i>
+        </div>
         <span class="clickable" onclick="forgotpwd()" id="forgot-pwd">Forgot password?</span>
         <button id="sign-in-btn" onclick="signIn()">Sign In</button>
         <div id="continue-el"> or continue with </div>
@@ -54,7 +55,7 @@
         <input type="text" id="new-username-el" placeholder="Enter your username"> </input>
         <h2 id="new-password-el2">Password</h2>
         <input type="password" id="new-password-el" placeholder="Enter your password"> </input>
-        <div id="password-strength" style="margin-top: 5px; font-weight: bold;"></div>
+        <div id="password-strength" style="margin-top: 5px; font-weight: bold; "></div>
         <h2 id="confirm-password-el2">Confirm Password</h2>
         <input type="password" id="confirm-password-el" placeholder="Confirm your password" > </input>
         <button id="create-account-btn" onclick="createAccount()">Create Account</button>

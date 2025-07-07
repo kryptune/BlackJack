@@ -93,6 +93,16 @@ function signInForm() {
   document.getElementById("sign-in").style.display = "flex";
 }
 
+function togglePassword() {
+  const input = document.getElementById("password-input");
+  const icon = document.getElementById("toggle-icon");
+  const isPassword = input.type === "password";
+
+  input.type = isPassword ? "text" : "password";
+  icon.classList.toggle("fa-eye");
+  icon.classList.toggle("fa-eye-slash");
+}
+
 function isPasswordStrong(password) {
   const minLength = 8;
   const hasUppercase = /[A-Z]/.test(password);
@@ -193,7 +203,7 @@ function createAccount() {
     return;
   }
 
-  fetch("/create_account", {
+  fetch("/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
