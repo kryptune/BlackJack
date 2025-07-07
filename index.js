@@ -556,7 +556,7 @@ function No() {
     alert("Thank you for playing! Your total money is: $" + total_money);
   }
 }
-
+/*
 document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
   if (event.key === "h") {
@@ -576,7 +576,7 @@ document.addEventListener("keydown", function (event) {
   if (event.key === "d") {
     double_down(); // Call your custom function here
   }
-});
+}); */
 
 function forgotpwd() {
   const email = prompt("Please enter your email address:");
