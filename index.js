@@ -133,10 +133,10 @@ function checkPasswordStrength() {
 
   if (password.length === 0) {
     strengthText.innerText = "";
-  } else if (strength <= 4) {
+  } else if (strength <= 2) {
     strengthText.innerText = "Weak";
     strengthText.style.color = "red";
-  } else if (strength <= 7) {
+  } else if (strength === 3 || strength === 4) {
     strengthText.innerText = "Moderate";
     strengthText.style.color = "orange";
   } else {
