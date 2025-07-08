@@ -79,25 +79,6 @@ h1 {
   font-weight: bold;
 }
 
-
-#No-btn {
-  float: right;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100px;
-  height: 75px;
-}
-
-#Yes-btn {
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100px;
-  height: 75px;
-}
-
 p {
   color: yellow;
   margin-top: 0;
@@ -159,7 +140,25 @@ h5 {
 }
 
 #playagain-content {
-  height: 200px;
+  height: auto;
+}
+
+#no-btn {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+  height: 75px;
+}
+
+#yes-btn {
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+  height: 75px;
 }
 
 .modal-content h2 {
