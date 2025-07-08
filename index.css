@@ -79,7 +79,10 @@ h1 {
   font-weight: bold;
 }
 
-
+#myModal {
+  display: none; /* Hidden by default */
+  height: 200px;
+}
 
 #No-btn {
   float: right;
@@ -141,7 +144,6 @@ h5 {
   align-items: center;
   justify-content: center;
 }
-
 
 
 /* Modal content box */
