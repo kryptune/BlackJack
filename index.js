@@ -205,7 +205,6 @@ function createAccount() {
 
   fetch(`${API_BASE}/register`, {
     method: "POST",
-    mode: "cors",  // this ensures CORS mode is respected
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       username: newUsername,
