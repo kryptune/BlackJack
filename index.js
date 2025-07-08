@@ -237,8 +237,8 @@ function createAccount() {
         document.getElementById("new-password-el").value = "";
         document.getElementById("confirm-password-el").value = "";
         document.getElementById("email-el").value = "";
-        username = newUsername; // Update the username variable
-        password = newPassword; // Update the password variable
+        document.getElementById("username-el").value = newUsername; // Update the username variable
+        document.getElementById("password-el").value = newPassword; // Update the password variable
         signIn(); // Automatically sign in the user after account creation
         // Optionally, you can redirect to the sign-in page or clear the form
       } else {
