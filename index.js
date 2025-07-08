@@ -232,13 +232,14 @@ function createAccount() {
     .then((res) => res.json())
     .then((data) => {
       if (data.status === "success") {
-        alert("Account created successfully! You can now sign in.");
+        alert("Account created successfully! Welcome to GameHub!.");
         document.getElementById("new-username-el").value = "";
         document.getElementById("new-password-el").value = "";
         document.getElementById("confirm-password-el").value = "";
         document.getElementById("email-el").value = "";
         document.getElementById("username-el").value = newUsername; // Update the username variable
         document.getElementById("password-el").value = newPassword; // Update the password variable
+        document.getElementById("create-account").style.display = "none";
         signIn(); // Automatically sign in the user after account creation
         // Optionally, you can redirect to the sign-in page or clear the form
       } else {
