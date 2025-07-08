@@ -79,9 +79,6 @@ h1 {
   font-weight: bold;
 }
 
-#playagain-content {
-  height: 200px;
-}
 
 #No-btn {
   float: right;
@@ -156,6 +153,10 @@ h5 {
   padding: 20px;
   /* Offset slightly lower while keeping center alignment */
   transform: translateY(10%);
+}
+
+#playagain-content {
+  height: 200px;
 }
 
 .modal-content h2 {
