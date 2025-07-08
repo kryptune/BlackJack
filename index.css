@@ -102,13 +102,6 @@ h5 {
   border-radius: 5px;
 }
 
-.clickable {
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-
 .modal {
   position: fixed;
   z-index: 1000;
@@ -141,6 +134,16 @@ h5 {
 
 #playagain-content {
   height: auto;
+}
+
+#no-btn, #yes-btn {
+  background-color: yellow;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 #no-btn {
