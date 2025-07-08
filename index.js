@@ -94,7 +94,7 @@ function signInForm() {
 }
 
 function togglePassword() {
-  const input = document.getElementById("password-input");
+  const input = document.getElementById("password-el");
   const icon = document.getElementById("toggle-icon");
   const isPassword = input.type === "password";
 
