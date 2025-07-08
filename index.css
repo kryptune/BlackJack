@@ -147,12 +147,15 @@ h5 {
   background-color: white;
   border-radius: 10px;
   width: 400px;
-  height: 500px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
   padding: 20px;
   /* Offset slightly lower while keeping center alignment */
   transform: translateY(10%);
+}
+
+#create-account-content, #sign-in-content{
+  height: 500px;
 }
 
 #playagain-content {
