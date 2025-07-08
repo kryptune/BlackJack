@@ -409,7 +409,7 @@ function startGame() {
     moneyEl.innerText = "Balance: $" + total_money;
     winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
-      document.getElementById("myModal").style.display = "flex";
+      document.getElementById("playagain").style.display = "flex";
     }, 1000);
   } else if (sum === 21) {
     dealer_Card2.style.backgroundImage =
@@ -423,7 +423,7 @@ function startGame() {
     updateWinLoss(true); // Update win/loss count
     //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
-      document.getElementById("myModal").style.display = "flex";
+      document.getElementById("playagain").style.display = "flex";
     }, 1000);
   } else if (dsum === 21) {
     dealer_Card2.style.backgroundImage =
@@ -437,7 +437,7 @@ function startGame() {
     updateWinLoss(false); // Update win/loss count
     //winloseEl.innerText = "W: " + win + "  L: " + lose;
     setTimeout(() => {
-      document.getElementById("myModal").style.display = "flex";
+      document.getElementById("playagain").style.display = "flex";
     }, 1000);
   }
 
@@ -489,7 +489,7 @@ function stand() {
   // Show the modal
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
-    document.getElementById("myModal").style.display = "flex";
+    document.getElementById("playagain").style.display = "flex";
   }, 2000);
   winloseEl.innerText = "W: " + win + "  L: " + lose;
 
@@ -539,7 +539,7 @@ function surrender() {
   moneyEl.innerText = "Balance: $" + total_money;
   setTimeout(() => {
     // next part of logic — heavy calculations, modal open, etc.
-    document.getElementById("myModal").style.display = "flex";
+    document.getElementById("playagain").style.display = "flex";
   }, 100);
 }
 
@@ -551,7 +551,7 @@ function disableButtons() {
 }
 
 function Yes() {
-  document.getElementById("myModal").style.display = "none";
+  document.getElementById("playagain").style.display = "none";
   if (total_money <= 0) {
     alert(
       "You have no money left to play. Please refresh the page to start over."
@@ -562,7 +562,7 @@ function Yes() {
 }
 
 function No() {
-  document.getElementById("myModal").style.display = "none";
+  document.getElementById("playagain").style.display = "none";
   reset();
   disableButtons();
   if (total_money <= 0) {
