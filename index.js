@@ -203,7 +203,23 @@ function createAccount() {
     return;
   }
 
-  fetch(`${API_BASE}/register`, {
+  fetch("https://blackjack-backend-b1d0.onrender.com/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: newUsername,
+      password: newPassword,
+      email: email
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error("Fetch error:", err));
+
+
+  /*fetch(`${API_BASE}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -232,6 +248,7 @@ function createAccount() {
       console.error("Error creating account:", error);
       alert("An error occurred while creating the account. Please try again.");
     });
+    */
 }
 
 // Update player balance (e.g. after a win/loss)
