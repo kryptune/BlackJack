@@ -253,6 +253,7 @@ function createAccount() {
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
+  const username = document.getElementById("username-el").value; // Get the username from the input fiel
   fetch(`${API_BASE}/player/${username}/balance`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -274,6 +275,7 @@ function updateBalance(amount) {
 
 function updateWinLoss(result) {
   //http://localhost:5000/@app_route
+  const username = document.getElementById("username-el").value; // Get the username from the input field
   fetch(`${API_BASE}/player/${username}/update_winloss`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
