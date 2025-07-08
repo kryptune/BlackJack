@@ -79,8 +79,7 @@ h1 {
   font-weight: bold;
 }
 
-#myModal {
-  display: none; /* Hidden by default */
+#playagain-content {
   height: 200px;
 }
 
