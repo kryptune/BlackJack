@@ -170,7 +170,7 @@ function createAccount() {
 
   // Validate input fields
   console.log(newUsername, newPassword, confirmPassword, email);
-  if (!newUsername.value || !newPassword.value || !confirmPassword.value || !email) {
+  if (!newUsername || !newPassword || !confirmPassword.value || !email) {
     alert("All fields are required");
     if (!newUsername) {
       newUsername_Input.style.borderColor = "red";
