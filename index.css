@@ -140,12 +140,12 @@ h5 {
 #no-btn, #yes-btn {
   background-color: yellow;
   border: none;
-  padding: 10px 20px;
+  padding: 10px;
   margin: 10px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  width: 75px;
+  width: 100px;
   height: 50px;
 }
 
@@ -154,7 +154,7 @@ h5 {
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-  margin-right: 70px;
+  margin-right: 100px;
 }
 
 #yes-btn {
@@ -162,8 +162,7 @@ h5 {
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-
-  margin-left: 70px;
+  margin-left: 100px;
 }
 
 .modal-content h2 {

@@ -48,13 +48,15 @@ let total_money = 0; // Initialize total_money
 let win = 0; // Initialize win count
 let lose = 0; // Initialize lose count
 
+const username_Input = document.getElementById("username-el");
+const password_Input = document.getElementById("password-el");
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 
 // Get player info
 
 function signIn() {
-  const username = document.getElementById("username-el").value;
-  const password = document.getElementById("password-el").value;
+  const username = username_Input.value;
+  const password = password_Input.value;
   fetch(`${API_BASE}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -126,12 +128,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function checkPasswordStrength() {
-  const passwordEl = document.getElementById("new-password-el");
+  const newpassword_Input = document.getElementById("new-password-el");
   const strengthText = document.getElementById("password-strength");
 
-  if (!passwordEl || !strengthText) return;
+  if (!newpassword_Input || !strengthText) return;
 
-  const password = passwordEl.value;
+  const password = newpassword_Input.value;
 
   let strength = 0;
 
@@ -157,39 +159,56 @@ function checkPasswordStrength() {
 }
 
 function createAccount() {
-  const newUsername = document.getElementById("new-username-el").value;
-  const newPassword = document.getElementById("new-password-el").value;
-  const confirmPassword = document.getElementById("confirm-password-el").value;
-  const email = document.getElementById("email-el").value;
+  const newUsername_Input = document.getElementById("new-username-el");
+  const newPassword_Input = document.getElementById("new-password-el");
+  const confirmPassword_Input = document.getElementById("confirm-password-el");
+  const email_Input = document.getElementById("email-el");
+  const email = email_Input.value.trim();
+  const newUsername = newUsername_Input.value.trim();
+  const newPassword = newPassword_Input.value.trim();
+  const confirmPassword = confirmPassword_Input.value.trim();
+
   // Validate input fields
   console.log(newUsername, newPassword, confirmPassword, email);
-  if (!newUsername || !newPassword || !confirmPassword || !email) {
+  if (!newUsername.value || !newPassword.value || !confirmPassword.value || !email) {
     alert("All fields are required");
     if (!newUsername) {
-      document.getElementById("new-username-el").style.borderColor = "red";
+      newUsername_Input.style.borderColor = "red";
     } else {
-      document.getElementById("new-username-el").style.borderColor = "#ccc";
+      newUsername_Input.style.borderColor = "#ccc";
     }
 
     if (!newPassword) {
-      document.getElementById("new-password-el").style.borderColor = "red";
+      newPassword_Input.style.borderColor = "red";
     } else {
-      document.getElementById("new-password-el").style.borderColor = "#ccc";
+      newPassword_Input.style.borderColor = "#ccc";
     }
 
     if (!confirmPassword) {
-      document.getElementById("confirm-password-el").style.borderColor = "red";
+      confirmPassword_Input.style.borderColor = "red";
     } else {
-      document.getElementById("confirm-password-el").style.borderColor = "#ccc";
+      confirmPassword_Input.style.borderColor = "#ccc";
     }
 
     if (!email) {
-      document.getElementById("email-el").style.borderColor = "red";
+      email_Input.style.borderColor = "red";
     } else {
-      document.getElementById("email-el").style.borderColor = "#ccc";
+      email_Input.style.borderColor = "#ccc";
     }
     return;
   }
+
+// More accurate validation using regex only
+const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+if (!isValidEmail) {
+  alert("Please enter a valid email address");
+  email_Input.style.borderColor = "red";
+  return;
+} else {
+  email_Input.style.borderColor = "#ccc"; // reset to neutral color
+}
+
 
   if (!isPasswordStrong(newPassword)) {
     alert(
@@ -202,23 +221,6 @@ function createAccount() {
     alert("Passwords do not match");
     return;
   }
-
-  /*
-  fetch("https://blackjack-backend-b1d0.onrender.com/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      username: newUsername,
-      password: newPassword,
-      email: email
-    })
-  })
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error("Fetch error:", err));
-*/
 
   fetch(`${API_BASE}/register`, {
     method: "POST",
@@ -233,12 +235,12 @@ function createAccount() {
     .then((data) => {
       if (data.status === "success") {
         alert("Account created successfully! Welcome to GameHub!.");
-        document.getElementById("new-username-el").value = "";
-        document.getElementById("new-password-el").value = "";
-        document.getElementById("confirm-password-el").value = "";
-        document.getElementById("email-el").value = "";
-        document.getElementById("username-el").value = newUsername; // Update the username variable
-        document.getElementById("password-el").value = newPassword; // Update the password variable
+        newUsername_Input.value = "";
+        newPassword_Input.value = "";
+        confirmPassword_Input.value = "";
+        email_Input.value = "";
+        username_Input.value = newUsername; // Update the username variable
+        password_Input.value = newPassword; // Update the password variable
         document.getElementById("create-account").style.display = "none";
         signIn(); // Automatically sign in the user after account creation
         // Optionally, you can redirect to the sign-in page or clear the form
@@ -254,7 +256,7 @@ function createAccount() {
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
-  const username = document.getElementById("username-el").value; // Get the username from the input fiel
+  const username = username_Input.value; // Get the username from the input field
   fetch(`${API_BASE}/player/${username}/balance`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -276,7 +278,7 @@ function updateBalance(amount) {
 
 function updateWinLoss(result) {
   //http://localhost:5000/@app_route
-  const username = document.getElementById("username-el").value; // Get the username from the input field
+  const username = username_Input.value; // Get the username from the input field
   fetch(`${API_BASE}/player/${username}/update_winloss`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -412,6 +414,7 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("playagain").style.display = "flex";
     }, 1000);
+
   } else if (sum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
@@ -426,6 +429,7 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("playagain").style.display = "flex";
     }, 1000);
+
   } else if (dsum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
@@ -576,6 +580,7 @@ function No() {
     alert("Thank you for playing! Your total money is: $" + total_money);
   }
 }
+
 /*
 document.addEventListener("keydown", function (event) {
   // Check if Shift + M is pressed
