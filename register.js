@@ -152,5 +152,5 @@ function createAccount() {
 
 
 function signInForm() {
-  window.close();
+  window.location.href = "index.html";
 }

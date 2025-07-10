@@ -463,7 +463,7 @@ document.addEventListener("keydown", function (event) {
 }); */
 
 function forgotpwd() {
-  window.href = "forgotpassword.html"; 
+  window.location.href = "forgotpassword.html"; 
 }
 /*
 
