@@ -1,9 +1,9 @@
 function login() {
-windows.location.href = "https://blckjck2.netlify.app";
+windows.location.href = "https://blckjck2.netlify.app/";
 }
 
 function register() {
-  windows.location.href = "https://blckjck2.netlify.app";
+  windows.location.href = "https://blckjck2.netlify.app/";
   createAccountForm();
 }
 
