@@ -1,3 +1,12 @@
+const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
+const new_password_input = document.getElementById("new-password-el");
+const password = new_password_input.value.trim();
+
+function signInForm() {
+  document.getElementById("create-account").style.display = "none";
+  document.getElementById("sign-in").style.display = "flex";
+}
+
 function togglePassword() {
         const icon = event.currentTarget;
         const inputId = icon.getAttribute("data-target");
@@ -13,6 +22,45 @@ function togglePassword() {
           icon.classList.add("fa-eye");
         }
       }
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("new-password-el")
+    .addEventListener("input", checkPasswordStrength);
+});
+
+function checkPasswordStrength() {
+  const newpassword_Input = document.getElementById("new-password-el");
+  const strengthText = document.getElementById("password-strength");
+
+  if (!newpassword_Input || !strengthText) return;
+
+  const password = newpassword_Input.value;
+
+  let strength = 0;
+
+  if (password.length >= 8) strength++;
+  if (/[A-Z]/.test(password)) strength++;
+  if (/[a-z]/.test(password)) strength++;
+  if (/[0-9]/.test(password)) strength++;
+  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
+
+  if (password.length === 0) {
+    strengthText.innerText = "";
+  } else if (strength <= 2) {
+    strengthText.innerText = "Weak";
+    strengthText.style.color = "red";
+  } else if (strength === 3 || strength === 4) {
+    strengthText.innerText = "Moderate";
+    strengthText.style.color = "orange";
+  } else {
+    strengthText.innerText = "Strong";
+    strengthText.style.color = "green";
+  }
+  console.log("Password strength:", strength);
+}
+
+
 
 function createAccount() {
   const newUsername_Input = document.getElementById("new-username-el");
@@ -65,12 +113,6 @@ function createAccount() {
     email_Input.style.borderColor = "#ccc"; // reset to neutral color
   }
 
-  if (!isPasswordStrong(newPassword)) {
-    alert(
-      "Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
-    );
-    return;
-  }
 
   if (newPassword !== confirmPassword) {
     alert("Passwords do not match");
@@ -107,4 +149,9 @@ function createAccount() {
       console.error("Error creating account:", error);
       alert("An error occurred while creating the account. Please try again.");
     });
+}
+
+
+function signInForm() {
+  window.close();
 }
