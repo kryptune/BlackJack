@@ -1,5 +1,5 @@
 function login() {
-window.close();  
+  window.location.href = "index.html";
 }
 
 function register() {
