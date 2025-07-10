@@ -12,6 +12,7 @@ body{
 
 /* Modal content box */
 .modal-content {
+  display: block;
   border-radius: 10px;
   border: 2px solid black;
   width: 630px;
@@ -77,4 +78,8 @@ input {
   cursor: pointer;
   width: 360px;
 
+}
+
+#password-strength {
+  transition: color 0.2s ease;
 }
