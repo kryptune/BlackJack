@@ -136,11 +136,11 @@ function createAccount() {
         newPassword_Input.value = "";
         confirmPassword_Input.value = "";
         email_Input.value = "";
-        username_Input.value = newUsername; // Update the username variable
-        password_Input.value = newPassword; // Update the password variable
-        document.getElementById("create-account").style.display = "none";
-        signIn(); // Automatically sign in the user after account creation
-        // Optionally, you can redirect to the sign-in page or clear the form
+        username = newUsername; // Update the username variable
+        password = newPassword; // Update the password variable
+        window.location.href = `index.html?username=${encodeURIComponent(username)}`;
+        window.location.href = `index.html?password=${encodeURIComponent(password)}`;
+        window.close(); // Close the registration window
       } else {
         alert("Error creating account: " + data.message);
       }

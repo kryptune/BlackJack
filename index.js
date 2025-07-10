@@ -51,12 +51,15 @@ let lose = 0; // Initialize lose count
 const username_Input = document.getElementById("username-el");
 const password_Input = document.getElementById("password-el");
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
-
+const params = new URLSearchParams(window.location.search);
+username_Input.value = params.get("username") || "";
+password_Input.value = params.get("password") || "";
+console.log(username);
 // Get player info
 
 function signIn() {
-  const username = username_Input.value;
-  const password = password_Input.value;
+  const username = username_Input.value || params.get("username");
+  const password = password_Input.value || params.get("password");
   fetch(`${API_BASE}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -90,10 +93,7 @@ function createAccountForm() {
   document.getElementById("create-account").style.display = "flex";
 }
 
-function signInForm() {
-  document.getElementById("create-account").style.display = "none";
-  document.getElementById("sign-in").style.display = "flex";
-}
+
 
 
 function togglePassword() {
@@ -112,153 +112,9 @@ function togglePassword() {
   }
 }
 
-function isPasswordStrong(password) {
-  const minLength = 8;
-  const hasUppercase = /[A-Z]/.test(password);
-  const hasLowercase = /[a-z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
-  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-  return (
-    password.length >= minLength &&
-    hasUppercase &&
-    hasLowercase &&
-    hasNumber &&
-    hasSpecialChar
-  );
-}
 
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .getElementById("new-password-el")
-    .addEventListener("input", checkPasswordStrength);
-});
 
-function checkPasswordStrength() {
-  const newpassword_Input = document.getElementById("new-password-el");
-  const strengthText = document.getElementById("password-strength");
-
-  if (!newpassword_Input || !strengthText) return;
-
-  const password = newpassword_Input.value;
-
-  let strength = 0;
-
-  if (password.length >= 8) strength++;
-  if (/[A-Z]/.test(password)) strength++;
-  if (/[a-z]/.test(password)) strength++;
-  if (/[0-9]/.test(password)) strength++;
-  if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
-
-  if (password.length === 0) {
-    strengthText.innerText = "";
-  } else if (strength <= 2) {
-    strengthText.innerText = "Weak";
-    strengthText.style.color = "red";
-  } else if (strength === 3 || strength === 4) {
-    strengthText.innerText = "Moderate";
-    strengthText.style.color = "orange";
-  } else {
-    strengthText.innerText = "Strong";
-    strengthText.style.color = "green";
-  }
-  console.log("Password strength:", strength);
-}
-
-function createAccount() {
-  const newUsername_Input = document.getElementById("new-username-el");
-  const newPassword_Input = document.getElementById("new-password-el");
-  const confirmPassword_Input = document.getElementById("confirm-password-el");
-  const email_Input = document.getElementById("email-el");
-  const email = email_Input.value.trim();
-  const newUsername = newUsername_Input.value.trim();
-  const newPassword = newPassword_Input.value.trim();
-  const confirmPassword = confirmPassword_Input.value.trim();
-
-  // Validate input fields
-  console.log(newUsername, newPassword, confirmPassword, email);
-  if (!newUsername || !newPassword || !confirmPassword || !email) {
-    alert("All fields are required");
-    if (!newUsername) {
-      newUsername_Input.style.borderColor = "red";
-    } else {
-      newUsername_Input.style.borderColor = "#ccc";
-    }
-
-    if (!newPassword) {
-      newPassword_Input.style.borderColor = "red";
-    } else {
-      newPassword_Input.style.borderColor = "#ccc";
-    }
-
-    if (!confirmPassword) {
-      confirmPassword_Input.style.borderColor = "red";
-    } else {
-      confirmPassword_Input.style.borderColor = "#ccc";
-    }
-
-    if (!email) {
-      email_Input.style.borderColor = "red";
-    } else {
-      email_Input.style.borderColor = "#ccc";
-    }
-    return;
-  }
-
-  // More accurate validation using regex only
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (!isValidEmail) {
-    alert("Please enter a valid email address");
-    email_Input.style.borderColor = "red";
-    return;
-  } else {
-    email_Input.style.borderColor = "#ccc"; // reset to neutral color
-  }
-
-  if (!isPasswordStrong(newPassword)) {
-    alert(
-      "Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
-    );
-    return;
-  }
-
-  if (newPassword !== confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
-
-  fetch(`${API_BASE}/register`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: newUsername,
-      password: newPassword,
-      email: email,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.status === "success") {
-        alert("Account created successfully! Welcome to GameHub!.");
-        newUsername_Input.value = "";
-        newPassword_Input.value = "";
-        confirmPassword_Input.value = "";
-        email_Input.value = "";
-        username_Input.value = newUsername; // Update the username variable
-        password_Input.value = newPassword; // Update the password variable
-        document.getElementById("create-account").style.display = "none";
-        signIn(); // Automatically sign in the user after account creation
-        // Optionally, you can redirect to the sign-in page or clear the form
-      } else {
-        alert("Error creating account: " + data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error creating account:", error);
-      alert("An error occurred while creating the account. Please try again.");
-    });
-}
 
 // Update player balance (e.g. after a win/loss)
 function updateBalance(amount) {
@@ -609,27 +465,7 @@ document.addEventListener("keydown", function (event) {
 
 function forgotpwd() {
   window.open ("https://blckjck2.netlify.app/forgotpassword"); 
-
 }
 /*
-  if (email) {
-    alert("A password reset link has been sent to " + email);
-    fetch("${API_BASE}/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        to: email,
-        subject: "Password Reset Request",
-        message:
-          "Please click the link below to reset your password:\n\n" +
-          "https://yourwebsite.com/reset-password?email=" +
-          encodeURIComponent(email),
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
-  } else {
-    alert("Email is required for password reset.");
-  }
+
     */
