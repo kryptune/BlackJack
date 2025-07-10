@@ -10,27 +10,41 @@
     <title>Blackjack Game</title>
   </head>
   <body>
-    <div class="balance" id="money-el">Balance: </div>
+    <div class="balance" id="money-el">Balance:</div>
 
     <h1>Blackjack</h1>
 
     <div id="sign-in" class="modal" style="display: flex">
       <div class="modal-content" id="sign-in-content">
         <div class="welcome-box">Welcome to GameHub!</div>
-        <h2 id="user-el">Username</h2> 
-        <input
-          type="text"
-          id="username-el"
-          placeholder="Enter your username"> </input>
+        <h2 id="user-el">Username</h2>
+        <input type="text" id="username-el" placeholder="Enter your username" />
         <h2 id="pwd-el">Password</h2>
-        <div style="position: relative;">
-          <input type="password" id="password-el" placeholder="Enter your password" />
-            <i id="toggle-icon" class="fa fa-eye" onclick="togglePassword()" 
-            style="position:absolute; right:10px; top:10px; cursor:pointer; display: flex;"></i>
+        <div style="position: relative">
+          <input
+            type="password"
+            id="password-el"
+            placeholder="Enter your password"
+          />
+          <i
+            id="toggle-icon1"
+            class="fa fa-eye"
+            data-target="password-el"
+            onclick="togglePassword()"
+            style="
+              position: absolute;
+              right: 10px;
+              top: 10px;
+              cursor: pointer;
+              display: flex;
+            "
+          ></i>
         </div>
-        <span class="clickable" onclick="forgotpwd()" id="forgot-pwd">Forgot password?</span>
+        <span class="clickable" onclick="forgotpwd()" id="forgot-pwd"
+          >Forgot password?</span
+        >
         <button id="sign-in-btn" onclick="signIn()">Sign In</button>
-        <div id="continue-el"> or continue with </div>
+        <div id="continue-el">or continue with</div>
         <div class="social-buttons">
           <button class="social-btn google">
             <i class="fab fa-google"></i> Google
@@ -41,9 +55,10 @@
           <button class="social-btn github">
             <i class="fab fa-github"></i> GitHub
           </button>
-
-        </div> 
-        <span class="clickable" onclick="createAccountForm()">Don't have an account? Sign Up Now</span>
+        </div>
+        <span class="clickable" onclick="createAccountForm()"
+          >Don't have an account? Sign Up Now</span
+        >
       </div>
     </div>
 
@@ -52,19 +67,66 @@
         <h1>Welcome to GameHub!</h1>
         <h3>Create a free account</h3>
         <h2 id="email-el2">Email Address</h2>
-        <input type="text" id="email-el" placeholder="Enter your Email" > </input>
+        <input type="text" id="email-el" placeholder="Enter your Email" />
         <h2 id="new-username-el2">Username</h2>
-        <input type="text" id="new-username-el" placeholder="Enter your username"> </input>
+        <input
+          type="text"
+          id="new-username-el"
+          placeholder="Enter your username"
+        />
         <h2 id="new-password-el2">Password</h2>
-        <input type="password" id="new-password-el" placeholder="Enter your password"> </input>
-        <div id="password-strength" style="margin-top: 5px; font-weight: bold; "></div>
+        <div style="position: relative">
+          <input
+            type="password"
+            id="new-password-el"
+            placeholder="Enter your new password"
+          />
+          <i
+            id="toggle-icon2"
+            class="fa fa-eye"
+            data-target="new-password-el"
+            onclick="togglePassword()"
+            style="
+              position: absolute;
+              right: 10px;
+              top: 10px;
+              cursor: pointer;
+              display: flex;
+            "
+          ></i>
+        </div>
+        <div
+          id="password-strength"
+          style="margin-top: 5px; font-weight: bold"
+        ></div>
         <h2 id="confirm-password-el2">Confirm Password</h2>
-        <input type="password" id="confirm-password-el" placeholder="Confirm your password" > </input>
-        <button id="create-account-btn" onclick="createAccount()">Create Account</button>
-        <span class="clickable" onclick="signInForm()">Already have an account? Sign In</span>
+        <div style="position: relative">
+          <input
+            type="password"
+            id="confirm-password-el"
+            placeholder="Confirm password"
+          />
+          <i
+            id="toggle-icon3"
+            class="fa fa-eye"
+            data-target="confirm-password-el"
+            onclick="togglePassword()"
+            style="
+              position: absolute;
+              right: 10px;
+              top: 10px;
+              cursor: pointer;
+              display: flex;
+            "
+          ></i>
+        </div>
+        <button id="create-account-btn" onclick="createAccount()">
+          Create Account
+        </button>
+        <span class="clickable" onclick="signInForm()"
+          >Already have an account? Sign In</span
+        >
       </div>
-
-
     </div>
 
     <div class="bet-section">

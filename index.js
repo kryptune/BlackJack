@@ -95,14 +95,28 @@ function signInForm() {
   document.getElementById("sign-in").style.display = "flex";
 }
 
-function togglePassword() {
-  const input = document.getElementById("password-el");
-  const icon = document.getElementById("toggle-icon");
-  const isPassword = input.type === "password";
+document.getElementById("toggle-icon1").addEventListener("click", togglePassword);
+document.getElementById("toggle-icon2").addEventListener("click", togglePassword);
+document.getElementById("toggle-icon3").addEventListener("click", togglePassword);
+// Or, if you have multiple icons:
+document.querySelectorAll(".toggle-password-icon").forEach(function(icon) {
+  icon.addEventListener("click", togglePassword);
+});
 
-  input.type = isPassword ? "text" : "password";
-  icon.classList.toggle("fa-eye");
-  icon.classList.toggle("fa-eye-slash");
+function togglePassword() {
+  const icon = event.currentTarget;
+  const inputId = icon.getAttribute("data-target");
+  const input = document.getElementById(inputId);
+
+  if (input.type === "password") {
+    input.type = "text";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    input.type = "password";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  }
 }
 
 function isPasswordStrong(password) {
@@ -198,17 +212,16 @@ function createAccount() {
     return;
   }
 
-// More accurate validation using regex only
-const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  // More accurate validation using regex only
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-if (!isValidEmail) {
-  alert("Please enter a valid email address");
-  email_Input.style.borderColor = "red";
-  return;
-} else {
-  email_Input.style.borderColor = "#ccc"; // reset to neutral color
-}
-
+  if (!isValidEmail) {
+    alert("Please enter a valid email address");
+    email_Input.style.borderColor = "red";
+    return;
+  } else {
+    email_Input.style.borderColor = "#ccc"; // reset to neutral color
+  }
 
   if (!isPasswordStrong(newPassword)) {
     alert(
@@ -414,7 +427,6 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("playagain").style.display = "flex";
     }, 1000);
-
   } else if (sum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
@@ -429,7 +441,6 @@ function startGame() {
     setTimeout(() => {
       document.getElementById("playagain").style.display = "flex";
     }, 1000);
-
   } else if (dsum === 21) {
     dealer_Card2.style.backgroundImage =
       "url('cards/" + dealer_Cards[1] + ".png')"; // Reveal dealer's second card
@@ -607,7 +618,21 @@ function forgotpwd() {
   const email = prompt("Please enter your email address:");
   if (email) {
     alert("A password reset link has been sent to " + email);
-    // Here you would typically send the email to your backend for processing
+    fetch("${API_BASE}/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: email,
+        subject: "Password Reset Request",
+        message:
+          "Please click the link below to reset your password:\n\n" +
+          "https://yourwebsite.com/reset-password?email=" +
+          encodeURIComponent(email),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
   } else {
     alert("Email is required for password reset.");
   }
