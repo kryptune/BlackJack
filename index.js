@@ -89,8 +89,7 @@ function signIn() {
 }
 
 function createAccountForm() {
-  document.getElementById("sign-in").style.display = "none";
-  document.getElementById("create-account").style.display = "flex";
+  window.location.href = "register.html";
 }
 
 
@@ -464,7 +463,7 @@ document.addEventListener("keydown", function (event) {
 }); */
 
 function forgotpwd() {
-  window.open ("https://blckjck2.netlify.app/forgotpassword"); 
+  window.href = "forgotpassword.html"; 
 }
 /*
 

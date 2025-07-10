@@ -138,9 +138,8 @@ function createAccount() {
         email_Input.value = "";
         const username = newUsername; // Update the username variable
         const password = newPassword; // Update the password variable
-        window.location.href = `index.html?username=${encodeURIComponent(username)}`;
-        window.location.href = `index.html?password=${encodeURIComponent(password)}`;
-        window.close(); // Close the registration window
+        window.location.href = `index.html?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+
       } else {
         alert("Error creating account: " + data.message);
       }
