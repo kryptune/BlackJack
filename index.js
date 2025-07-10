@@ -95,13 +95,6 @@ function signInForm() {
   document.getElementById("sign-in").style.display = "flex";
 }
 
-document.getElementById("toggle-icon1").addEventListener("click", togglePassword);
-document.getElementById("toggle-icon2").addEventListener("click", togglePassword);
-document.getElementById("toggle-icon3").addEventListener("click", togglePassword);
-// Or, if you have multiple icons:
-document.querySelectorAll(".toggle-password-icon").forEach(function(icon) {
-  icon.addEventListener("click", togglePassword);
-});
 
 function togglePassword() {
   const icon = event.currentTarget;
