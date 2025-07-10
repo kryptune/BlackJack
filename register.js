@@ -137,8 +137,8 @@ function createAccount() {
         confirmPassword_Input.value = "";
         email_Input.value = "";
         const username = newUsername; // Update the username variable
-        const password = newPassword; // Update the password variable
-        window.location.href = `index.html?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+        // Redirect to index.html with username as a query parameter
+        window.location.href = `index.html?username=${encodeURIComponent(username)}`;
 
       } else {
         alert("Error creating account: " + data.message);

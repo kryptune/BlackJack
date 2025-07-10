@@ -53,13 +53,12 @@ const password_Input = document.getElementById("password-el");
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 const params = new URLSearchParams(window.location.search);
 username_Input.value = params.get("username") || "";
-password_Input.value = params.get("password") || "";
 console.log(username);
 // Get player info
 
 function signIn() {
   const username = username_Input.value || params.get("username");
-  const password = password_Input.value || params.get("password");
+  const password = password_Input.value.trim();
   fetch(`${API_BASE}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
