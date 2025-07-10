@@ -1,0 +1,80 @@
+body{
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url("pokertable.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* Modal content box */
+.modal-content {
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 630px;
+  height: 550px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 30px;
+  /* Offset slightly lower while keeping center alignment */
+  transform: translateY(10%);
+  margin-left: 80px;
+}
+
+.modal-content h1 {
+  font-size: 24px;
+  text-align: left;
+  margin-top: 10px;
+  color: white;
+}
+
+.modal-content h3 {
+  font-size: 15px;
+  text-align: left;
+  margin: 20px 15px 30px 0px;
+  color: white;
+}
+
+.modal-content h2 {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: left;
+  margin: 10px 10px 15px 15px;
+  color: yellow;
+}
+
+input {
+  width: 590px ;
+  padding: 10px;
+  margin: 0px 0px 20px 15px;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.clickable {
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: center;
+  margin-left: 220px;
+}
+
+#create-account-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 130px 10px 130px;
+  cursor: pointer;
+  width: 360px;
+
+}
