@@ -608,7 +608,10 @@ document.addEventListener("keydown", function (event) {
 }); */
 
 function forgotpwd() {
-  const email = prompt("Please enter your email address:");
+  window.open ("https://blckjck2.netlify.app/forgotpassword"); 
+
+}
+/*
   if (email) {
     alert("A password reset link has been sent to " + email);
     fetch("${API_BASE}/send-email", {
@@ -629,4 +632,4 @@ function forgotpwd() {
   } else {
     alert("Email is required for password reset.");
   }
-}
+    */
