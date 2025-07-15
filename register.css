@@ -4,7 +4,7 @@ body{
     background-image: url("pokertable.png");
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
 
@@ -16,7 +16,7 @@ body{
   border-radius: 10px;
   border: 2px solid black;
   width: 630px;
-  height: 550px;
+  height: 560px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   position: relative;
   padding: 30px;
@@ -74,7 +74,7 @@ input {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 10px 130px 10px 130px;
+  margin: 10px 130px 15px 130px;
   cursor: pointer;
   width: 360px;
 
