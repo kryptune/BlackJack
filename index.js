@@ -1,3 +1,4 @@
+
 let sumEl = document.getElementById("sum-el");
 let msgEl = document.getElementById("msg-el");
 let moneyEl = document.getElementById("money-el");
@@ -52,8 +53,7 @@ const username_Input = document.getElementById("username-el");
 const password_Input = document.getElementById("password-el");
 const API_BASE = "https://blackjack-backend-b1d0.onrender.com";
 const params = new URLSearchParams(window.location.search);
-username_Input.value = params.get("username") || "";
-console.log(username);
+username_Input.value = params.get("username") || "";  
 // Get player info
 
 function signIn() {
